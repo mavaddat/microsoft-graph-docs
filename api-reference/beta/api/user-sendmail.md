@@ -379,7 +379,7 @@ HTTP/1.1 202 Accepted
 #### Request
 
 <!-- {
-  "blockType": "ignored",
+  "blockType": "request",
   "name": "message_send_mime"
 }-->
 
