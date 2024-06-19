@@ -4,7 +4,7 @@ description: "Defines how a given object should be synchronized from source dire
 ms.localizationpriority: medium
 doc_type: resourcePageType
 author: "ArvindHarinder1"
-ms.prod: "applications"
+ms.subservice: "entra-applications"
 ---
 
 # objectMapping resource type
@@ -30,34 +30,9 @@ Object mappings are the main part of the [synchronization rule](synchronization-
 |sourceObjectName           |String     |Name of the object in the source directory. Must match the object name from the source [directory definition](synchronization-directorydefinition.md).|
 |targetObjectName           |String     |Name of the object in target directory. Must match the object name from the target [directory definition](synchronization-directorydefinition.md).|
 
-## JSON representation
+### Sample configuration
 
-The following is a JSON representation of the resource.
-
-<!-- {
-  "blockType": "resource",
-  "optionalProperties": [
-
-  ],
-  "@odata.type": "microsoft.graph.objectMapping"
-}-->
-
-```json
-{
-  "@odata.type": "#microsoft.graph.objectMapping",
-  "attributeMappings": [{"@odata.type": "microsoft.graph.attributeMapping"}],
-  "enabled": true,
-  "flowTypes": "String",
-  "metadata": [{"@odata.type": "microsoft.graph.objectMappingMetadataEntry"}],
-  "name": "String",
-  "scope": {"@odata.type": "microsoft.graph.filter"},
-  "sourceObjectName": "String",
-  "targetObjectName": "String"
-}
-```
-
-## JSON Example
-
+<!-- { "blockType": "ignored" } -->
 ```json
 {
     "attributeMappings": [
@@ -336,6 +311,37 @@ The following is a JSON representation of the resource.
     "scope": null,
     "sourceObjectName": "User",
     "targetObjectName": "User"
+}
+```
+
+## JSON representation
+The following is a JSON representation of the resource.
+<!-- {
+  "blockType": "resource",
+  "@odata.type": "microsoft.graph.objectMapping"
+}
+-->
+``` json
+{
+  "@odata.type": "#microsoft.graph.objectMapping",
+  "attributeMappings": [
+    {
+      "@odata.type": "microsoft.graph.attributeMapping"
+    }
+  ],
+  "enabled": "Boolean",
+  "flowTypes": "String",
+  "metadata": [
+    {
+      "@odata.type": "microsoft.graph.objectMappingMetadataEntry"
+    }
+  ],
+  "name": "String",
+  "scope": {
+    "@odata.type": "microsoft.graph.filter"
+  },
+  "sourceObjectName": "String",
+  "targetObjectName": "String"
 }
 ```
 

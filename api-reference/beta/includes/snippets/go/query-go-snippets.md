@@ -5,31 +5,32 @@ description: "Automatically generated file. DO NOT MODIFY"
 ```go
 
 
+// Code snippets are only available for the latest major version. Current major version is $v0.*
+
+// Dependencies
 import (
 	  "context"
 	  msgraphsdk "github.com/microsoftgraph/msgraph-beta-sdk-go"
-	  graphmodels "github.com/microsoftgraph/msgraph-beta-sdk-go/Search/Query"
+	  graphsearch "github.com/microsoftgraph/msgraph-beta-sdk-go/search"
+	  graphmodels "github.com/microsoftgraph/msgraph-beta-sdk-go/models"
 	  //other-imports
 )
 
-graphClient := msgraphsdk.NewGraphServiceClientWithCredentials(cred, scopes)
-
-
-requestBody := graphmodels.NewQueryPostRequestBody()
+requestBody := graphsearch.NewQueryPostRequestBody()
 
 
 searchRequest := graphmodels.NewSearchRequest()
 entityTypes := []graphmodels.EntityTypeable {
 	entityType := graphmodels.EXTERNALITEM_ENTITYTYPE 
-	searchRequest.SetEntityType(&entityType) 
-
+	searchRequest.SetEntityType(&entityType)
 }
 searchRequest.SetEntityTypes(entityTypes)
 contentSources := []string {
 	"/external/connections/connectionfriendlyname",
-
 }
 searchRequest.SetContentSources(contentSources)
+region := "US"
+searchRequest.SetRegion(&region) 
 query := graphmodels.NewSearchQuery()
 queryString := "contoso product"
 query.SetQueryString(&queryString) 
@@ -41,17 +42,16 @@ searchRequest.SetSize(&size)
 fields := []string {
 	"title",
 	"description",
-
 }
 searchRequest.SetFields(fields)
 
 requests := []graphmodels.SearchRequestable {
 	searchRequest,
-
 }
 requestBody.SetRequests(requests)
 
-result, err := graphClient.Search().Query().Post(context.Background(), requestBody, nil)
+// To initialize your graphClient, see https://learn.microsoft.com/en-us/graph/sdks/create-client?from=snippets&tabs=go
+query, err := graphClient.Search().Query().PostAsQueryPostResponse(context.Background(), requestBody, nil)
 
 
 ```

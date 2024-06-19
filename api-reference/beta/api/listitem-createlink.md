@@ -3,7 +3,7 @@ title: "listItem: createLink"
 description: "Create a link to share a listItem"
 author: "learafa"
 ms.localizationpriority: medium
-ms.prod: "sharepoint"
+ms.subservice: "sharepoint"
 doc_type: apiPageType
 ---
 
@@ -16,18 +16,17 @@ Namespace: microsoft.graph
 Create a sharing link for a [listItem](../resources/listitem.md).
 
 The **createLink** action creates a new sharing link if the specified link type doesn't already exist for the calling application.
-If a sharing link of the specified type already exists for the app, this action will return the existing sharing link.
+If a sharing link of the specified type already exists for the app, this action returns the existing sharing link.
 
 **listItem** resources inherit sharing permissions from the [list](../resources/list.md) the item resides in.
 
-## Permissions
-One of the following permissions is required to call this API. To learn more, including how to choose permissions, see [permissions](/graph/permissions-reference).
+[!INCLUDE [national-cloud-support](../../includes/all-clouds.md)]
 
-|Permission type|Permissions (from least to most privileged)|
-|:---|:---|
-|Delegated (work or school account) | Files.ReadWrite, Files.ReadWrite.All, Sites.ReadWrite.All    |
-|Delegated (personal Microsoft account) | Files.ReadWrite, Files.ReadWrite.All    |
-|Application | Files.ReadWrite.All, Sites.ReadWrite.All |
+## Permissions
+Choose the permission or permissions marked as least privileged for this API. Use a higher privileged permission or permissions [only if your app requires it](/graph/permissions-overview#best-practices-for-using-microsoft-graph-permissions). For details about delegated and application permissions, see [Permission types](/graph/permissions-overview#permission-types). To learn more about these permissions, see the [permissions reference](/graph/permissions-reference).
+
+<!-- { "blockType": "permissions", "name": "listitem_createlink" } -->
+[!INCLUDE [permissions-table](../includes/permissions/listitem-createlink-permissions.md)]
 
 ## HTTP request
 
@@ -43,7 +42,7 @@ POST /sites/{siteId}/lists/{listId}/items/{itemId}/createLink
 ## Request headers
 |Name|Description|
 |:---|:---|
-|Authorization|Bearer {token}. Required.|
+|Authorization|Bearer {token}. Required. Learn more about [authentication and authorization](/graph/auth/auth-concepts).|
 |Content-Type|application/json. Required.|
 
 ## Request body
@@ -69,7 +68,7 @@ The following values are allowed for the **type** parameter.
 |:-----------|:---------------------------------------------------------------------------------------------|
 | view           | Creates a read-only link to the item.                                                                        |
 | review         | Creates a review link to the item. This option is only available for files in OneDrive for Business and SharePoint.                   |
-| edit           | Creates an read-write link to the item.                                                                       |
+| edit           | Creates a read-write link to the item.                                                                       |
 | embed          | Creates an embeddable link to the item.                                                                      |
 | blocksDownload | Creates a read-only link that blocks download to the item. This option is only available for files in OneDrive for Business and SharePoint.  |
 | createOnly     | Creates an upload-only link to the item. This option is only available for folders in OneDrive for Business and SharePoint.             |
@@ -90,7 +89,7 @@ The following values are allowed for the **scope** parameter.
 
 If successful, this method returns a single [permission](../resources/permission.md) resource in the response body that represents the requested sharing permissions.
 
-The response will be `201 Created` if a new sharing link is created for the listItem or `200 OK` if an existing link is returned.
+The response is `201 Created` if a new sharing link is created for the listItem or `200 OK` if an existing link is returned.
 
 ## Examples
 
@@ -131,6 +130,10 @@ Content-Type: application/json
 [!INCLUDE [sample-code](../includes/snippets/csharp/listitem-createlink-for-itemid-in-specific-list-csharp-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
+# [CLI](#tab/cli)
+[!INCLUDE [sample-code](../includes/snippets/cli/listitem-createlink-for-itemid-in-specific-list-cli-snippets.md)]
+[!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
+
 # [Go](#tab/go)
 [!INCLUDE [sample-code](../includes/snippets/go/listitem-createlink-for-itemid-in-specific-list-go-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
@@ -149,6 +152,10 @@ Content-Type: application/json
 
 # [PowerShell](#tab/powershell)
 [!INCLUDE [sample-code](../includes/snippets/powershell/listitem-createlink-for-itemid-in-specific-list-powershell-snippets.md)]
+[!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
+
+# [Python](#tab/python)
+[!INCLUDE [sample-code](../includes/snippets/python/listitem-createlink-for-itemid-in-specific-list-python-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 ---
@@ -184,7 +191,7 @@ Content-Type: application/json
 ### Example 2: Creating company sharable links
 
 OneDrive for Business and SharePoint support company sharable links.
-These are similar to anonymous links, except they only work for members of the owning organization.
+These links are similar to anonymous links, except they only work for members of the owning organization.
 To create a company sharable link, use the **scope** parameter with a value of `organization`.
 
 #### Request
@@ -197,7 +204,7 @@ To create a company sharable link, use the **scope** parameter with a value of `
 }-->
 
 ```http
-POST /sites/{siteId}/lists/{listId}/items/{itemId}/createLink
+POST https://graph.microsoft.com/beta/sites/{siteId}/lists/{listId}/items/{itemId}/createLink
 Content-Type: application/json
 
 {
@@ -208,6 +215,10 @@ Content-Type: application/json
 
 # [C#](#tab/csharp)
 [!INCLUDE [sample-code](../includes/snippets/csharp/listitem-createlink-create-company-shareable-links-csharp-snippets.md)]
+[!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
+
+# [CLI](#tab/cli)
+[!INCLUDE [sample-code](../includes/snippets/cli/listitem-createlink-create-company-shareable-links-cli-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 # [Go](#tab/go)
@@ -228,6 +239,10 @@ Content-Type: application/json
 
 # [PowerShell](#tab/powershell)
 [!INCLUDE [sample-code](../includes/snippets/powershell/listitem-createlink-create-company-shareable-links-powershell-snippets.md)]
+[!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
+
+# [Python](#tab/python)
+[!INCLUDE [sample-code](../includes/snippets/python/listitem-createlink-create-company-shareable-links-python-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 ---
@@ -257,7 +272,7 @@ Content-Type: application/json
 
 ### Example 3: Creating embeddable links
 
-When using the `embed` link type, the webUrl returned can be embedded in an `<iframe>` HTML element.
+When you use the `embed` link type, the webUrl returned can be embedded in an `<iframe>` HTML element.
 When an embed link is created, the `webHtml` property contains the HTML code for an `<iframe>` to host the content.
 
 >**Note:** Embed links are only supported for OneDrive personal.
@@ -272,7 +287,7 @@ When an embed link is created, the `webHtml` property contains the HTML code for
 }-->
 
 ```http
-POST /sites/{siteId}/lists/{listId}/items/{itemId}/createLink
+POST https://graph.microsoft.com/beta/sites/{siteId}/lists/{listId}/items/{itemId}/createLink
 Content-Type: application/json
 
 {
@@ -282,6 +297,10 @@ Content-Type: application/json
 
 # [C#](#tab/csharp)
 [!INCLUDE [sample-code](../includes/snippets/csharp/listitem-createlink-3-csharp-snippets.md)]
+[!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
+
+# [CLI](#tab/cli)
+[!INCLUDE [sample-code](../includes/snippets/cli/listitem-createlink-3-cli-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 # [Go](#tab/go)
@@ -302,6 +321,10 @@ Content-Type: application/json
 
 # [PowerShell](#tab/powershell)
 [!INCLUDE [sample-code](../includes/snippets/powershell/listitem-createlink-3-powershell-snippets.md)]
+[!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
+
+# [Python](#tab/python)
+[!INCLUDE [sample-code](../includes/snippets/python/listitem-createlink-3-python-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 ---
@@ -332,7 +355,7 @@ Content-Type: application/json
 ## Remarks
 
 * To create a link based on the organization's default policy and the caller's permissions on the listItem, omit the scope and type parameters
-* Links created using this action do not expire unless a default expiration policy is enforced for the organization.
+* Links created using this action don't expire unless a default expiration policy is enforced for the organization.
 * Links are visible in the sharing permissions for the listItem and can be removed by an owner of the listItem.
 * Links always point to the current version of a listItem unless the listItem is checked out (SharePoint only).
 

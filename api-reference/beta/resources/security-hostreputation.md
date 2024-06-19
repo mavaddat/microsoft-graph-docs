@@ -3,7 +3,7 @@ title: "hostReputation resource type"
 description: "Represents the reputation of a host based on a series of rules."
 author: "joerattazzi-microsoft"
 ms.localizationpriority: medium
-ms.prod: "security"
+ms.subservice: "security"
 doc_type: resourcePageType
 ---
 
@@ -13,6 +13,8 @@ Namespace: microsoft.graph.security
 
 [!INCLUDE [beta-disclaimer](../../includes/beta-disclaimer.md)]
 
+[!INCLUDE [threatintelligence-api-disclaimer](../../includes/threatintelligence-api-disclaimer.md)]
+
 Represents the reputation of a host based on a series of rules. This score helps users quickly understand any detected ties to malicious or suspicious infrastructure when validating the reputation of a known or unknown entity. The platform provides quick information about the activity of these entities (such as first and last seen timestamps or [autonomous system](../resources/security-autonomoussystem.md) details) and a list of rules that affect the reputation score when applicable.
 
 Reputation data is important to understanding the trustworthiness of an attack surface and is also useful when assessing unknown [hostnames](../resources/security-hostname.md) or [IP addresses](../resources/security-ipaddress.md) that appear in investigations. These scores uncover any prior malicious or suspicious activity that affected the entity, or other known indicators of compromise to consider.
@@ -21,7 +23,7 @@ Reputation data is important to understanding the trustworthiness of an attack s
 
 |Method|Return type|Description|
 |:---|:---|:---|
-|[Get hostReputation](../api/security-host-get-reputation.md)|[microsoft.graph.security.hostReputation](../resources/security-hostreputation.md)|Read the properties and relationships of a [microsoft.graph.security.hostReputation](../resources/security-hostreputation.md) object, for a given [microsoft.graph.security.host](../resources/security-host.md).|
+|[Get host reputation](../api/security-host-get-reputation.md)|[microsoft.graph.security.hostReputation](../resources/security-hostreputation.md)|Read the properties and relationships of a [microsoft.graph.security.hostReputation](../resources/security-hostreputation.md) object, for a given [microsoft.graph.security.host](../resources/security-host.md).|
 
 ## Properties
 

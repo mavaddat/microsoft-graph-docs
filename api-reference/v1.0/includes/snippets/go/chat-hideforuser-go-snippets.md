@@ -5,17 +5,18 @@ description: "Automatically generated file. DO NOT MODIFY"
 ```go
 
 
+// Code snippets are only available for the latest major version. Current major version is $v1.*
+
+// Dependencies
 import (
 	  "context"
 	  msgraphsdk "github.com/microsoftgraph/msgraph-sdk-go"
-	  graphmodels "github.com/microsoftgraph/msgraph-sdk-go/Chats/Item/HideForUser"
+	  graphchats "github.com/microsoftgraph/msgraph-sdk-go/chats"
+	  graphmodels "github.com/microsoftgraph/msgraph-sdk-go/models"
 	  //other-imports
 )
 
-graphClient := msgraphsdk.NewGraphServiceClientWithCredentials(cred, scopes)
-
-
-requestBody := graphmodels.NewHideForUserPostRequestBody()
+requestBody := graphchats.NewHideForUserPostRequestBody()
 user := graphmodels.NewTeamworkUserIdentity()
 id := "d864e79f-a516-4d0f-9fee-0eeb4d61fdc2"
 user.SetId(&id) 
@@ -25,6 +26,7 @@ additionalData := map[string]interface{}{
 user.SetAdditionalData(additionalData)
 requestBody.SetUser(user)
 
+// To initialize your graphClient, see https://learn.microsoft.com/en-us/graph/sdks/create-client?from=snippets&tabs=go
 graphClient.Chats().ByChatId("chat-id").HideForUser().Post(context.Background(), requestBody, nil)
 
 

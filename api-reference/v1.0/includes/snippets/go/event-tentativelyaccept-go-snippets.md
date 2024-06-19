@@ -5,17 +5,18 @@ description: "Automatically generated file. DO NOT MODIFY"
 ```go
 
 
+// Code snippets are only available for the latest major version. Current major version is $v1.*
+
+// Dependencies
 import (
 	  "context"
 	  msgraphsdk "github.com/microsoftgraph/msgraph-sdk-go"
-	  graphmodels "github.com/microsoftgraph/msgraph-sdk-go/Me/Events/Item/TentativelyAccept"
+	  graphusers "github.com/microsoftgraph/msgraph-sdk-go/users"
+	  graphmodels "github.com/microsoftgraph/msgraph-sdk-go/models"
 	  //other-imports
 )
 
-graphClient := msgraphsdk.NewGraphServiceClientWithCredentials(cred, scopes)
-
-
-requestBody := graphmodels.NewTentativelyAcceptPostRequestBody()
+requestBody := graphusers.NewItemTentativelyAcceptPostRequestBody()
 comment := "I may not be able to make this week. How about next week?"
 requestBody.SetComment(&comment) 
 sendResponse := true
@@ -35,6 +36,7 @@ end.SetTimeZone(&timeZone)
 proposedNewTime.SetEnd(end)
 requestBody.SetProposedNewTime(proposedNewTime)
 
+// To initialize your graphClient, see https://learn.microsoft.com/en-us/graph/sdks/create-client?from=snippets&tabs=go
 graphClient.Me().Events().ByEventId("event-id").TentativelyAccept().Post(context.Background(), requestBody, nil)
 
 

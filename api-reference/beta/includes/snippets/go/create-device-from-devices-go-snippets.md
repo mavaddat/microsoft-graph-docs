@@ -5,6 +5,9 @@ description: "Automatically generated file. DO NOT MODIFY"
 ```go
 
 
+// Code snippets are only available for the latest major version. Current major version is $v0.*
+
+// Dependencies
 import (
 	  "context"
 	  "time"
@@ -12,9 +15,6 @@ import (
 	  graphmodels "github.com/microsoftgraph/msgraph-beta-sdk-go/models"
 	  //other-imports
 )
-
-graphClient := msgraphsdk.NewGraphServiceClientWithCredentials(cred, scopes)
-
 
 requestBody := graphmodels.NewDevice()
 accountEnabled := true
@@ -31,7 +31,6 @@ alternativeSecurityId.SetKey(&key)
 
 alternativeSecurityIds := []graphmodels.AlternativeSecurityIdable {
 	alternativeSecurityId,
-
 }
 requestBody.SetAlternativeSecurityIds(alternativeSecurityIds)
 approximateLastSignInDateTime , err := time.Parse(time.RFC3339, "2016-10-19T10:37:00Z")
@@ -43,7 +42,8 @@ requestBody.SetDeviceMetadata(&deviceMetadata)
 deviceVersion := int32(99)
 requestBody.SetDeviceVersion(&deviceVersion) 
 
-result, err := graphClient.Devices().Post(context.Background(), requestBody, nil)
+// To initialize your graphClient, see https://learn.microsoft.com/en-us/graph/sdks/create-client?from=snippets&tabs=go
+devices, err := graphClient.Devices().Post(context.Background(), requestBody, nil)
 
 
 ```

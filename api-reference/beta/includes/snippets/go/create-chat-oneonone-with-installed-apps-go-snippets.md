@@ -5,6 +5,9 @@ description: "Automatically generated file. DO NOT MODIFY"
 ```go
 
 
+// Code snippets are only available for the latest major version. Current major version is $v0.*
+
+// Dependencies
 import (
 	  "context"
 	  msgraphsdk "github.com/microsoftgraph/msgraph-beta-sdk-go"
@@ -12,28 +15,23 @@ import (
 	  //other-imports
 )
 
-graphClient := msgraphsdk.NewGraphServiceClientWithCredentials(cred, scopes)
-
-
 requestBody := graphmodels.NewChat()
 chatType := graphmodels.ONEONONE_CHATTYPE 
 requestBody.SetChatType(&chatType) 
 
 
-conversationMember := graphmodels.NewConversationMember()
+conversationMember := graphmodels.NewAadUserConversationMember()
 roles := []string {
 	"owner",
-
 }
 conversationMember.SetRoles(roles)
 additionalData := map[string]interface{}{
 	"odataBind" : "https://graph.microsoft.com/beta/users('8b081ef6-4792-4def-b2c9-c363a1bf41d5')", 
 }
 conversationMember.SetAdditionalData(additionalData)
-conversationMember1 := graphmodels.NewConversationMember()
+conversationMember1 := graphmodels.NewAadUserConversationMember()
 roles := []string {
 	"owner",
-
 }
 conversationMember1.SetRoles(roles)
 additionalData := map[string]interface{}{
@@ -44,7 +42,6 @@ conversationMember1.SetAdditionalData(additionalData)
 members := []graphmodels.ConversationMemberable {
 	conversationMember,
 	conversationMember1,
-
 }
 requestBody.SetMembers(members)
 
@@ -57,11 +54,11 @@ teamsAppInstallation.SetAdditionalData(additionalData)
 
 installedApps := []graphmodels.TeamsAppInstallationable {
 	teamsAppInstallation,
-
 }
 requestBody.SetInstalledApps(installedApps)
 
-result, err := graphClient.Chats().Post(context.Background(), requestBody, nil)
+// To initialize your graphClient, see https://learn.microsoft.com/en-us/graph/sdks/create-client?from=snippets&tabs=go
+chats, err := graphClient.Chats().Post(context.Background(), requestBody, nil)
 
 
 ```

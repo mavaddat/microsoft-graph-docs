@@ -5,17 +5,18 @@ description: "Automatically generated file. DO NOT MODIFY"
 ```go
 
 
+// Code snippets are only available for the latest major version. Current major version is $v0.*
+
+// Dependencies
 import (
 	  "context"
 	  msgraphsdk "github.com/microsoftgraph/msgraph-beta-sdk-go"
-	  graphmodels "github.com/microsoftgraph/msgraph-beta-sdk-go/Security/TiIndicators/UpdateTiIndicators"
+	  graphsecurity "github.com/microsoftgraph/msgraph-beta-sdk-go/security"
+	  graphmodels "github.com/microsoftgraph/msgraph-beta-sdk-go/models"
 	  //other-imports
 )
 
-graphClient := msgraphsdk.NewGraphServiceClientWithCredentials(cred, scopes)
-
-
-requestBody := graphmodels.NewUpdateTiIndicatorsPostRequestBody()
+requestBody := graphsecurity.NewUpdateTiIndicatorsPostRequestBody()
 
 
 tiIndicator := graphmodels.NewTiIndicator()
@@ -29,14 +30,14 @@ tiIndicator1.SetId(&id)
 additionalInformation := "test again"
 tiIndicator1.SetAdditionalInformation(&additionalInformation) 
 
-value := []graphmodels.Objectable {
+value := []graphmodels.TiIndicatorable {
 	tiIndicator,
 	tiIndicator1,
-
 }
 requestBody.SetValue(value)
 
-result, err := graphClient.Security().TiIndicators().UpdateTiIndicators().Post(context.Background(), requestBody, nil)
+// To initialize your graphClient, see https://learn.microsoft.com/en-us/graph/sdks/create-client?from=snippets&tabs=go
+updateTiIndicators, err := graphClient.Security().TiIndicators().UpdateTiIndicators().PostAsUpdateTiIndicatorsPostResponse(context.Background(), requestBody, nil)
 
 
 ```

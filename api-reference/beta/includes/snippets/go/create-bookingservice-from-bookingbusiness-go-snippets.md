@@ -5,6 +5,9 @@ description: "Automatically generated file. DO NOT MODIFY"
 ```go
 
 
+// Code snippets are only available for the latest major version. Current major version is $v0.*
+
+// Dependencies
 import (
 	  "context"
 	  abstractions "github.com/microsoft/kiota-abstractions-go"
@@ -12,9 +15,6 @@ import (
 	  graphmodels "github.com/microsoftgraph/msgraph-beta-sdk-go/models"
 	  //other-imports
 )
-
-graphClient := msgraphsdk.NewGraphServiceClientWithCredentials(cred, scopes)
-
 
 requestBody := graphmodels.NewBookingService()
 defaultDuration , err := abstractions.ParseISODuration("PT1H30M")
@@ -80,7 +80,6 @@ bookingReminder.SetAdditionalData(additionalData)
 
 defaultReminders := []graphmodels.BookingReminderable {
 	bookingReminder,
-
 }
 requestBody.SetDefaultReminders(defaultReminders)
 description := "Individual bento box lunch delivery"
@@ -91,6 +90,8 @@ isLocationOnline := true
 requestBody.SetIsLocationOnline(&isLocationOnline) 
 smsNotificationsEnabled := true
 requestBody.SetSmsNotificationsEnabled(&smsNotificationsEnabled) 
+isCustomerAllowedToManageBooking := true
+requestBody.SetIsCustomerAllowedToManageBooking(&isCustomerAllowedToManageBooking) 
 languageTag := "en-US"
 requestBody.SetLanguageTag(&languageTag) 
 isHiddenFromCustomers := false
@@ -116,7 +117,6 @@ requestBody.SetSchedulingPolicy(schedulingPolicy)
 staffMemberIds := []string {
 	"d90d1e8c-5cfe-48cf-a2d5-966267375b6a",
 	"2f5f8794-0b29-45b5-b56a-2eb5ff7aa880",
-
 }
 requestBody.SetStaffMemberIds(staffMemberIds)
 isAnonymousJoinEnabled := false
@@ -128,7 +128,8 @@ additionalData := map[string]interface{}{
 }
 requestBody.SetAdditionalData(additionalData)
 
-result, err := graphClient.BookingBusinesses().ByBookingBusinesseId("bookingBusiness-id").Services().Post(context.Background(), requestBody, nil)
+// To initialize your graphClient, see https://learn.microsoft.com/en-us/graph/sdks/create-client?from=snippets&tabs=go
+services, err := graphClient.Solutions().BookingBusinesses().ByBookingBusinessId("bookingBusiness-id").Services().Post(context.Background(), requestBody, nil)
 
 
 ```

@@ -3,7 +3,7 @@ title: "cvssSummary resource type"
 description: "Represents a common vulnerability scoring system (CVSS) evaluation of a vulnerability."
 author: "joerattazzi-microsoft"
 ms.localizationpriority: medium
-ms.prod: "security"
+ms.subservice: "security"
 doc_type: resourcePageType
 ---
 
@@ -12,6 +12,8 @@ doc_type: resourcePageType
 Namespace: microsoft.graph.security
 
 [!INCLUDE [beta-disclaimer](../../includes/beta-disclaimer.md)]
+
+[!INCLUDE [threatintelligence-api-disclaimer](../../includes/threatintelligence-api-disclaimer.md)]
 
 Represents a common vulnerability scoring system (CVSS) evaluation of a vulnerability.
 

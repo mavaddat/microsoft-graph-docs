@@ -5,25 +5,25 @@ description: "Automatically generated file. DO NOT MODIFY"
 ```go
 
 
+// Code snippets are only available for the latest major version. Current major version is $v0.*
+
+// Dependencies
 import (
 	  "context"
 	  abstractions "github.com/microsoft/kiota-abstractions-go"
 	  msgraphsdk "github.com/microsoftgraph/msgraph-beta-sdk-go"
-	  graphmodels "github.com/microsoftgraph/msgraph-beta-sdk-go/InformationProtection/Policy/Labels/EvaluateApplication"
-	  graphconfig "github.com/microsoftgraph/msgraph-beta-sdk-go/informationprotection"
+	  graphinformationprotection "github.com/microsoftgraph/msgraph-beta-sdk-go/informationprotection"
+	  graphmodels "github.com/microsoftgraph/msgraph-beta-sdk-go/models"
 	  //other-imports
 )
-
-graphClient := msgraphsdk.NewGraphServiceClientWithCredentials(cred, scopes)
-
 
 headers := abstractions.NewRequestHeaders()
 headers.Add("User-Agent", "ContosoLOBApp/1.0")
 
-configuration := &graphconfig.InformationProtectionPolicyLabelsEvaluateApplicationRequestBuilderPostRequestConfiguration{
+configuration := &graphinformationprotection.InformationProtectionPolicyLabelsEvaluateApplicationRequestBuilderPostRequestConfiguration{
 	Headers: headers,
 }
-requestBody := graphmodels.NewEvaluateApplicationPostRequestBody()
+requestBody := graphinformationprotection.NewEvaluateApplicationPostRequestBody()
 contentInfo := graphmodels.NewContentInfo()
 format := graphmodels.DEFAULT_CONTENTFORMAT 
 contentInfo.SetFormat(&format) 
@@ -77,7 +77,6 @@ metadata := []graphmodels.KeyValuePairable {
 	keyValuePair4,
 	keyValuePair5,
 	keyValuePair6,
-
 }
 contentInfo.SetMetadata(metadata)
 additionalData := map[string]interface{}{
@@ -106,7 +105,8 @@ additionalData := map[string]interface{}{
 labelingOptions.SetAdditionalData(additionalData)
 requestBody.SetLabelingOptions(labelingOptions)
 
-result, err := graphClient.InformationProtection().Policy().Labels().EvaluateApplication().Post(context.Background(), requestBody, configuration)
+// To initialize your graphClient, see https://learn.microsoft.com/en-us/graph/sdks/create-client?from=snippets&tabs=go
+evaluateApplication, err := graphClient.InformationProtection().Policy().Labels().EvaluateApplication().PostAsEvaluateApplicationPostResponse(context.Background(), requestBody, configuration)
 
 
 ```

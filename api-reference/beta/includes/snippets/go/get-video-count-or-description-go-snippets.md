@@ -5,16 +5,16 @@ description: "Automatically generated file. DO NOT MODIFY"
 ```go
 
 
+// Code snippets are only available for the latest major version. Current major version is $v0.*
+
+// Dependencies
 import (
 	  "context"
 	  abstractions "github.com/microsoft/kiota-abstractions-go"
 	  msgraphsdk "github.com/microsoftgraph/msgraph-beta-sdk-go"
-	  graphconfig "github.com/microsoftgraph/msgraph-beta-sdk-go/groups"
+	  graphgroups "github.com/microsoftgraph/msgraph-beta-sdk-go/groups"
 	  //other-imports
 )
-
-graphClient := msgraphsdk.NewGraphServiceClientWithCredentials(cred, scopes)
-
 
 headers := abstractions.NewRequestHeaders()
 headers.Add("ConsistencyLevel", "eventual")
@@ -23,17 +23,18 @@ headers.Add("ConsistencyLevel", "eventual")
 requestSearch := "\"displayName:Video\" OR \"description:prod\""
 requestCount := true
 
-requestParameters := &graphconfig.GroupsRequestBuilderGetQueryParameters{
+requestParameters := &graphgroups.GroupsRequestBuilderGetQueryParameters{
 	Search: &requestSearch,
 	Orderby: [] string {"displayName"},
 	Count: &requestCount,
 }
-configuration := &graphconfig.GroupsRequestBuilderGetRequestConfiguration{
+configuration := &graphgroups.GroupsRequestBuilderGetRequestConfiguration{
 	Headers: headers,
 	QueryParameters: requestParameters,
 }
 
-result, err := graphClient.Groups().Get(context.Background(), configuration)
+// To initialize your graphClient, see https://learn.microsoft.com/en-us/graph/sdks/create-client?from=snippets&tabs=go
+groups, err := graphClient.Groups().Get(context.Background(), configuration)
 
 
 ```

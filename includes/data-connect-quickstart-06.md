@@ -4,9 +4,7 @@ ms.localizationpriority: medium
 
 <!-- markdownlint-disable MD002 MD041 -->
 
-This exercise describes how to set up your Azure resources to be able to connect Microsoft Graph Data Connect (Data Connect) to it. In this step, you can either choose Azure Synapse or Azure Data Factory to create a pipeline to extract the data from Microsoft 365 to the Azure Storage account using Data Connect.
-
-We recommend that you use Azure Synapse because it has more built-in capabilities for data processing.
+This exercise describes how to set up your Azure resources and connect Microsoft Graph Data Connect (Data Connect) to it. In this step, you can either choose Azure Synapse, Azure Data Factory, or Microsoft Fabric to create a pipeline to extract the data from Microsoft 365 to the Azure Storage account using Data Connect. 
 
 ## Setting up your Azure resources
 
@@ -14,7 +12,7 @@ We recommend that you use Azure Synapse because it has more built-in capabilitie
 
 1. Open a browser and go to your [Azure portal](https://portal.azure.com/#home).
 
-1. Sign in to the portal using an account with an [Application Administrator](/azure/active-directory/roles/permissions-reference#application-administrator) or [Application Developer](/azure/active-directory/roles/permissions-reference#application-developer) role. Ensure that you are signed-in with your developer account that has privileges to create Azure resources within your subscription.
+1. Sign in to the portal using an account with an [Application Administrator](/entra/identity/role-based-access-control/permissions-reference#application-administrator) or [Application Developer](/entra/identity/role-based-access-control/permissions-reference#application-developer) role. Ensure that you're signed-in with your developer account that has privileges to create Azure resources within your subscription.
 
 1. On the left pane, select **Create a resource**.
 
@@ -34,14 +32,13 @@ We recommend that you use Azure Synapse because it has more built-in capabilitie
 
     ![A screenshot of the resource page with Open Synapse Studio highlighted.](../concepts/images/azure-synapse-studio-tile.png)
 
-1. By default, Azure Synapse Analytics uses an integration runtime that auto-resolves the region. We recommend for the context of this tutorial that you use the default auto-resolve.
+1. By default, Azure Synapse Analytics uses an integration runtime that automatically resolves the region. In this tutorial, we recommend using the default auto-resolve option in the developer tenant.
 
     1. Switch to **Manage (toolbox icon) > Integration runtimes > New**.
 
     1. Select **Azure, Self-Hosted**, and choose **Continue**.
 
         ![A screenshot of the integration runtime setup with Azure, Self-Hosted highlighted.](../concepts/images/data-connect-synapse-IR.png)
-
     1. For the network environment, select **Azure**, and then choose **Continue**.
 
         ![A screenshot of the Integration runtime setup with Azure selected for network environment and Continue highlighted.](../concepts/images/data-connect-synapse-azure.png)
@@ -77,7 +74,7 @@ We recommend that you use Azure Synapse because it has more built-in capabilitie
 
         ![A screenshot of the Set properties pane with New highlighted.](../concepts/images/data-connect-synapse-linked-service.png)
 
-    1. In the dialog box, from the **Connect via integration runtime** dropdown, select the integration runtime you created, enter the **Application ID** and **client secret value** of the Azure Active Directory (Azure AD) application in the **Service principal ID** and **Service principal key** fields respectively, and choose **Create**.  
+    1. In the dialog box, from the **Connect via integration runtime** dropdown, select the integration runtime you created, enter the **Application ID** and **client secret value** of the Microsoft Entra application in the **Service principal ID** and **Service principal key** fields respectively, and choose **Create**.  
 
         ![A screenshot of the New linked service pane.](../concepts/images/data-connect-synapse-service-id.png)
 
@@ -100,7 +97,7 @@ We recommend that you use Azure Synapse because it has more built-in capabilitie
     ![A screenshot of the New integration dataset pane with Azure Blob Storage highlighted.](../concepts/images/data-connect-synapse-integration-service.png)
 
     1. For the format for the data, select **Binary**, and then choose **Continue**.
-    1. Give the dataset the name **M365JsonFile** and follow the next steps to create a new linked service if it does not exist already.
+    1. Give the dataset the name **M365JsonFile** and follow the next steps to create a new linked service if it doesn't exist already.
 
         ![A screenshot of the Set properties pane with Linked service highlighted.](../concepts/images/data-connect-synapse-set-properties.png)
 
@@ -109,8 +106,8 @@ We recommend that you use Azure Synapse because it has more built-in capabilitie
             - **Authentication type:** Service Principal
             - **Azure subscription:** Select all.
             - **Storage account name:** mgdcm365datastore. This is the storage account created earlier in this exercise.
-            - **Service principal ID:** Enter the ID of the Azure AD application you created.
-            - **Service principal key:** Enter the hashed key of the Azure AD application you created.
+            - **Service principal ID:** Enter the ID of the Microsoft Entra application you created.
+            - **Service principal key:** Enter the hashed key of the Microsoft Entra application you created.
 
         ![A screenshot of the New linked service pane with the pane highlighted.](../concepts/images/data-connect-synapse-new-linked-service.png)
 
@@ -133,7 +130,7 @@ We recommend that you use Azure Synapse because it has more built-in capabilitie
 Now that you've created the pipeline, it's time to run it.
 
 > [!NOTE]
-> It can take several minutes for the consent request to appear, and it is not uncommon for the entire process (start, requesting consent, and after approving the consent completing the pipeline run) to take over 40 minutes.
+> It can take several minutes for the consent request to appear, and it's not uncommon for the entire process (start, requesting consent, and after approving the consent completing the pipeline run) to take over 40 minutes.
 
 1. In the Azure Synapse Analytics designer, with the pipeline open, select **Add trigger > Trigger Now**, and then choose **OK**.
 
@@ -155,13 +152,13 @@ Now that you've created the pipeline, it's time to run it.
 
     ![A screenshot of the Details page with ConsentPending highlighted.](../concepts/images/data-connect-synapse-accept-request.png)
 
-1. The request will be sent to the global admin to be approved. For the context of this tutorial, we recommend opening another tab with your admin priviledges enabled so you can approve the pipeline request.
+1. The request is sent to the global admin to be approved. For the context of this tutorial, we recommend opening another tab with your admin privileges enabled so you can approve the pipeline request.
 
 # [Create an Azure Data Factory Pipeline](#tab/AzureDataFactoryPipeline)
 
 1. Open a browser and go to your [Azure portal](https://portal.azure.com/).
 
-1. Sign in using an account with [Application Administrator](/azure/active-directory/roles/permissions-reference#application-administrator) or [Application Developer](/azure/active-directory/roles/permissions-reference#application-developer) role to your Azure portal. Ensure that you are signed-in with your developer account that has privileges to create Azure resources within your subscription.
+1. Sign in to the Azure portal with an account that has either the [Application administrator](/entra/identity/role-based-access-control/permissions-reference#application-administrator) or [Application developer](/entra/identity/role-based-access-control/permissions-reference#application-developer) role. Make sure you're using your **developer** account, which has the necessary privileges to create Azure resources within your subscription.
 
 1. On the home page, select **Create a resource**.
 
@@ -222,7 +219,7 @@ Now that you've created the pipeline, it's time to run it.
         ![A screenshot of the Azure portal Data Factory service page with New linked service pane highlight selecting new.](../concepts/images/dataconnect-adf-source-newlinkedservice.png)
 
     1. In the dialog that appears, select the integration runtime you previously created in the **Connect via integration runtime** dropdown.
-    1. Enter the previously created **Application ID** and **Client Secret Value** of the Azure AD application in the **Service principal ID** and **Service principal key** fields respectively.
+    1. Enter the previously created **Application ID** and **Client Secret Value** of the Microsoft Entra application in the **Service principal ID** and **Service principal key** fields respectively.
     1. Then click **Create**.  
 
         ![A screenshot of the Azure portal Data Factory service page with the service principal key configured.](../concepts/images/data-connect-adf-linked-service.png)
@@ -252,8 +249,8 @@ Now that you've created the pipeline, it's time to run it.
             - **Azure subscription**: Select all
             - **Storage account name**: Select the storage account you previously created
             - **Tenant**: Enter the ID of your Azure tenant
-            - **Service principal ID**: Enter the ID of the Azure AD application you previously created
-            - **Service principal key**: Enter the client secret value of the Azure AD application you previously created
+            - **Service principal ID**: Enter the ID of the Microsoft Entra application you previously created
+            - **Service principal key**: Enter the client secret value of the Microsoft Entra application you previously created
         1. Click **Create**
 
     1. In the Set **properties** pane, next to the **File path** field, click the folder icon to Browse.
@@ -296,4 +293,8 @@ With the pipeline created, now it is time to run it.
 
     ![A screenshot of the Details tab with RequestingConsent highlighted.](../concepts/images/data-connect-adf-wait-for-approval.png)
 
-1. The request will be sent to the global admin to be approved. For the context of this tutorial, we recommend opening another tab with your admin priviledges enabled so you can approve the pipeline request.
+1. The request is sent to the global admin to be approved. For the context of this tutorial, we recommend opening another tab with your admin privileges enabled so you can approve the pipeline request.
+<!--
+# [Create a Microsoft Fabric Pipeline](#tab/MicrosoftFabricPipeline)
+
+(More instructions coming soon)-->

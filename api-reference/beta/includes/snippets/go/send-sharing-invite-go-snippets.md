@@ -5,17 +5,18 @@ description: "Automatically generated file. DO NOT MODIFY"
 ```go
 
 
+// Code snippets are only available for the latest major version. Current major version is $v0.*
+
+// Dependencies
 import (
 	  "context"
 	  msgraphsdk "github.com/microsoftgraph/msgraph-beta-sdk-go"
-	  graphmodels "github.com/microsoftgraph/msgraph-beta-sdk-go/Drives/Item/Items/Item/Invite"
+	  graphdrives "github.com/microsoftgraph/msgraph-beta-sdk-go/drives"
+	  graphmodels "github.com/microsoftgraph/msgraph-beta-sdk-go/models"
 	  //other-imports
 )
 
-graphClient := msgraphsdk.NewGraphServiceClientWithCredentials(cred, scopes)
-
-
-requestBody := graphmodels.NewInvitePostRequestBody()
+requestBody := graphdrives.NewInvitePostRequestBody()
 
 
 driveRecipient := graphmodels.NewDriveRecipient()
@@ -24,7 +25,6 @@ driveRecipient.SetEmail(&email)
 
 recipients := []graphmodels.DriveRecipientable {
 	driveRecipient,
-
 }
 requestBody.SetRecipients(recipients)
 message := "Here's the file that we're collaborating on."
@@ -35,7 +35,6 @@ sendInvitation := true
 requestBody.SetSendInvitation(&sendInvitation) 
 roles := []string {
 	"write",
-
 }
 requestBody.SetRoles(roles)
 password := "password123"
@@ -43,7 +42,8 @@ requestBody.SetPassword(&password)
 expirationDateTime := "2018-07-15T14:00:00.000Z"
 requestBody.SetExpirationDateTime(&expirationDateTime) 
 
-result, err := graphClient.Drives().ByDriveId("drive-id").Items().ByItemId("driveItem-id").Invite().Post(context.Background(), requestBody, nil)
+// To initialize your graphClient, see https://learn.microsoft.com/en-us/graph/sdks/create-client?from=snippets&tabs=go
+invite, err := graphClient.Drives().ByDriveId("drive-id").Items().ByDriveItemId("driveItem-id").Invite().PostAsInvitePostResponse(context.Background(), requestBody, nil)
 
 
 ```

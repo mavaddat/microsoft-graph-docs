@@ -5,27 +5,28 @@ description: "Automatically generated file. DO NOT MODIFY"
 ```go
 
 
+// Code snippets are only available for the latest major version. Current major version is $v0.*
+
+// Dependencies
 import (
 	  "context"
 	  msgraphsdk "github.com/microsoftgraph/msgraph-beta-sdk-go"
-	  graphconfig "github.com/microsoftgraph/msgraph-beta-sdk-go/education"
+	  grapheducation "github.com/microsoftgraph/msgraph-beta-sdk-go/education"
 	  //other-imports
 )
-
-graphClient := msgraphsdk.NewGraphServiceClientWithCredentials(cred, scopes)
-
 
 
 requestTop := int32(3)
 
-requestParameters := &graphconfig.EducationClasseItemAssignmentCategoriesDelta()RequestBuilderGetQueryParameters{
+requestParameters := &grapheducation.EducationClasseItemAssignmentCategoriesDeltaWithRequestBuilderGetQueryParameters{
 	Top: &requestTop,
 }
-configuration := &graphconfig.EducationClasseItemAssignmentCategoriesDelta()RequestBuilderGetRequestConfiguration{
+configuration := &grapheducation.EducationClasseItemAssignmentCategoriesDeltaWithRequestBuilderGetRequestConfiguration{
 	QueryParameters: requestParameters,
 }
 
-result, err := graphClient.Education().Classes().ByClasseId("educationClass-id").AssignmentCategories().Delta().Get(context.Background(), configuration)
+// To initialize your graphClient, see https://learn.microsoft.com/en-us/graph/sdks/create-client?from=snippets&tabs=go
+delta, err := graphClient.Education().Classes().ByEducationClassId("educationClass-id").AssignmentCategories().Delta().GetAsDeltaGetResponse(context.Background(), configuration)
 
 
 ```

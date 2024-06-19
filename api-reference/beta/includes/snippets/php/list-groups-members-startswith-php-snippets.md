@@ -5,9 +5,11 @@ description: "Automatically generated file. DO NOT MODIFY"
 ```php
 
 <?php
+use Microsoft\Graph\Beta\GraphServiceClient;
+use Microsoft\Graph\Beta\Generated\Groups\Item\Members\MembersRequestBuilderGetRequestConfiguration;
 
-// THIS SNIPPET IS A PREVIEW FOR THE KIOTA BASED SDK. NON-PRODUCTION USE ONLY
-$graphServiceClient = new GraphServiceClient($requestAdapter);
+
+$graphServiceClient = new GraphServiceClient($tokenRequestContext, $scopes);
 
 $requestConfiguration = new MembersRequestBuilderGetRequestConfiguration();
 $headers = [
@@ -17,11 +19,10 @@ $requestConfiguration->headers = $headers;
 
 $queryParameters = MembersRequestBuilderGetRequestConfiguration::createQueryParameters();
 $queryParameters->count = true;
-$queryParameters->filter = "startswith(displayName,%20'a')";
+$queryParameters->filter = "startswith(displayName, 'a')";
 $requestConfiguration->queryParameters = $queryParameters;
 
 
-$result = $graphServiceClient->groups()->byGroupId('group-id')->members()->get($requestConfiguration);
-
+$result = $graphServiceClient->groups()->byGroupId('group-id')->members()->get($requestConfiguration)->wait();
 
 ```

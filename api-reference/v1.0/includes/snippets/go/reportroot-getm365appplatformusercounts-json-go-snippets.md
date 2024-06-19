@@ -5,27 +5,29 @@ description: "Automatically generated file. DO NOT MODIFY"
 ```go
 
 
+// Code snippets are only available for the latest major version. Current major version is $v1.*
+
+// Dependencies
 import (
 	  "context"
 	  msgraphsdk "github.com/microsoftgraph/msgraph-sdk-go"
-	  graphconfig "github.com/microsoftgraph/msgraph-sdk-go/reports"
+	  graphreports "github.com/microsoftgraph/msgraph-sdk-go/reports"
 	  //other-imports
 )
-
-graphClient := msgraphsdk.NewGraphServiceClientWithCredentials(cred, scopes)
-
 
 
 requestFormat := "application/json"
 
-requestParameters := &graphconfig.ReportsGetM365AppPlatformUserCounts(period='{period}')RequestBuilderGetQueryParameters{
+requestParameters := &graphreports.ReportsGetM365AppPlatformUserCountsWithPeriodRequestBuilderGetQueryParameters{
 	Format: &requestFormat,
 }
-configuration := &graphconfig.ReportsGetM365AppPlatformUserCounts(period='{period}')RequestBuilderGetRequestConfiguration{
+configuration := &graphreports.ReportsGetM365AppPlatformUserCountsWithPeriodRequestBuilderGetRequestConfiguration{
 	QueryParameters: requestParameters,
 }
 
-graphClient.Reports().GetM365AppPlatformUserCounts(period='{period}')().Get(context.Background(), configuration)
+// To initialize your graphClient, see https://learn.microsoft.com/en-us/graph/sdks/create-client?from=snippets&tabs=go
+period := "{period}"
+graphClient.Reports().GetM365AppPlatformUserCountsWithPeriod(&period).Get(context.Background(), configuration)
 
 
 ```

@@ -3,8 +3,9 @@ title: "workbookChartPoint resource type"
 description: "Represents a point of a series in a chart."
 author: "lumine2008"
 ms.localizationpriority: medium
-ms.prod: "excel"
+ms.subservice: "excel"
 doc_type: resourcePageType
+toc.title: Chart point
 ---
 
 # workbookChartPoint resource type
@@ -28,7 +29,7 @@ Represents a point of a series in a chart.
 | Property	   | Type	|Description|
 |:---------------|:--------|:----------|
 |value|Json|Returns the value of a chart point. Read-only.|
-|id|string|unique identifier|
+|ID|string|unique identifier|
 
 ## Relationships
 | Relationship | Type	|Description|
@@ -37,7 +38,7 @@ Represents a point of a series in a chart.
 
 ## JSON representation
 
-Here is a JSON representation of the resource.
+The following JSON representation shows the resource type.
 
 <!--{
   "blockType": "resource",

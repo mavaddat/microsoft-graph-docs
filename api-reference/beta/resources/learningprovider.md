@@ -3,7 +3,7 @@ title: "learningProvider resource type"
 description: "Represents an entity that holds the details about a learning provider in Viva learning."
 author: "malabikaroy"
 ms.localizationpriority: medium
-ms.prod: "employee-learning"
+ms.subservice: "viva-learning"
 doc_type: resourcePageType
 ---
 
@@ -19,11 +19,11 @@ Represents an entity that holds the details about a learning provider in Viva le
 
 |Method|Return type|Description|
 |:---|:---|:---|
-|[List learningProviders](../api/employeeexperience-list-learningproviders.md)|[learningProvider](../resources/learningprovider.md) collection|Get a list of the [learningProvider](../resources/learningprovider.md) resources registered in Viva Learning for a tenant.|
-|[Create learningProvider](../api/employeeexperience-post-learningproviders.md)|[learningProvider](../resources/learningprovider.md)|Create a new [learningProvider](../resources/learningprovider.md) object and registers it with Viva Learning using the specified display name and logos for different themes.|
-|[Get learningProvider](../api/learningprovider-get.md)|[learningProvider](../resources/learningprovider.md)|Read the properties and relationships of a [learningProvider](../resources/learningprovider.md) object.|
-|[Update learningProvider](../api/learningprovider-update.md)|[learningProvider](../resources/learningprovider.md)|Update the properties of a [learningProvider](../resources/learningprovider.md) object.|
-|[Delete learningProvider](../api/employeeexperience-delete-learningproviders.md)|None|Delete a [learningProvider](../resources/learningprovider.md) resource and remove its registration in Viva Learning for the tenant.|
+|[List](../api/employeeexperience-list-learningproviders.md)|[learningProvider](../resources/learningprovider.md) collection|Get a list of the [learningProvider](../resources/learningprovider.md) resources registered in Viva Learning for a tenant.|
+|[Create](../api/employeeexperience-post-learningproviders.md)|[learningProvider](../resources/learningprovider.md)|Create a new [learningProvider](../resources/learningprovider.md) object and registers it with Viva Learning using the specified display name and logos for different themes.|
+|[Get](../api/learningprovider-get.md)|[learningProvider](../resources/learningprovider.md)|Read the properties and relationships of a [learningProvider](../resources/learningprovider.md) object.|
+|[Update](../api/learningprovider-update.md)|[learningProvider](../resources/learningprovider.md)|Update the properties of a [learningProvider](../resources/learningprovider.md) object.|
+|[Delete](../api/employeeexperience-delete-learningproviders.md)|None|Delete a [learningProvider](../resources/learningprovider.md) resource and remove its registration in Viva Learning for the tenant.|
 
 ## Properties
 
@@ -31,6 +31,7 @@ Represents an entity that holds the details about a learning provider in Viva le
 |:---|:---|:---|
 |displayName|String|The display name that appears in Viva Learning. Required.|
 |id|String|The unique identifier for the learning provider. Required.|
+|isCourseActivitySyncEnabled|Boolean|Indicates whether a provider can ingest learning course activity records. The default value is `false`. Set to `true` to make learningCourseActivities available for this provider.|
 |loginWebUrl|String|Authentication URL to access the courses for the provider. Optional.|
 |longLogoWebUrlForDarkTheme|String|The long logo URL for the dark mode that needs to be a publicly accessible image. This image would be saved to the blob storage of Viva Learning for rendering within the Viva Learning app. Required.|
 |longLogoWebUrlForLightTheme|String|The long logo URL for the light mode that needs to be a publicly accessible image. This image would be saved to the blob storage of Viva Learning for rendering  within the Viva Learning app. Required.|
@@ -62,6 +63,7 @@ The following is a JSON representation of the resource.
     "longLogoWebUrlForDarkTheme": "String",
     "longLogoWebUrlForLightTheme": "String",
     "squareLogoWebUrlForDarkTheme": "String",
-    "squareLogoWebUrlForLightTheme": "String"
+    "squareLogoWebUrlForLightTheme": "String",
+    "isCourseActivitySyncEnabled": "Boolean"
 }
 ```

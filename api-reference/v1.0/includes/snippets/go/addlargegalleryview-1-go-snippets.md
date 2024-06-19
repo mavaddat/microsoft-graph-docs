@@ -5,21 +5,22 @@ description: "Automatically generated file. DO NOT MODIFY"
 ```go
 
 
+// Code snippets are only available for the latest major version. Current major version is $v1.*
+
+// Dependencies
 import (
 	  "context"
 	  msgraphsdk "github.com/microsoftgraph/msgraph-sdk-go"
-	  graphmodels "github.com/microsoftgraph/msgraph-sdk-go/Communications/Calls/Item/AddLargeGalleryView"
+	  graphcommunications "github.com/microsoftgraph/msgraph-sdk-go/communications"
 	  //other-imports
 )
 
-graphClient := msgraphsdk.NewGraphServiceClientWithCredentials(cred, scopes)
-
-
-requestBody := graphmodels.NewAddLargeGalleryViewPostRequestBody()
+requestBody := graphcommunications.NewAddLargeGalleryViewPostRequestBody()
 clientContext := "785f4929-92ca-497b-863f-c778c77c9758"
 requestBody.SetClientContext(&clientContext) 
 
-result, err := graphClient.Communications().Calls().ByCallId("call-id").AddLargeGalleryView().Post(context.Background(), requestBody, nil)
+// To initialize your graphClient, see https://learn.microsoft.com/en-us/graph/sdks/create-client?from=snippets&tabs=go
+addLargeGalleryView, err := graphClient.Communications().Calls().ByCallId("call-id").AddLargeGalleryView().Post(context.Background(), requestBody, nil)
 
 
 ```

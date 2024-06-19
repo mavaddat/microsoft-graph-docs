@@ -3,8 +3,9 @@ title: "workbookRangeFill resource type"
 description: "Represents the background of a range object."
 author: "lumine2008"
 ms.localizationpriority: medium
-ms.prod: "excel"
+ms.subservice: "excel"
 doc_type: resourcePageType
+toc.title: Range fill
 ---
 
 # workbookRangeFill resource type
@@ -27,7 +28,7 @@ Represents the background of a range object.
 ## Properties
 | Property	   | Type	|Description|
 |:---------------|:--------|:----------|
-|color|string|HTML color code representing the color of the border line, of the form #RRGGBB (e.g. "FFA500") or as a named HTML color (e.g. "orange")|
+|color|string|HTML color code representing the color of the border line, of the form #RRGGBB (for example "FFA500") or as a named HTML color (for example "orange")|
 
 ## Relationships
 None
@@ -35,7 +36,7 @@ None
 
 ## JSON representation
 
-Here is a JSON representation of the resource.
+The following JSON representation shows the resource type.
 
 <!-- {
   "blockType": "resource",

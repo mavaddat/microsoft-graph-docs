@@ -5,15 +5,15 @@ description: "Automatically generated file. DO NOT MODIFY"
 ```go
 
 
+// Code snippets are only available for the latest major version. Current major version is $v0.*
+
+// Dependencies
 import (
 	  "context"
 	  msgraphsdk "github.com/microsoftgraph/msgraph-beta-sdk-go"
 	  graphmodels "github.com/microsoftgraph/msgraph-beta-sdk-go/models"
 	  //other-imports
 )
-
-graphClient := msgraphsdk.NewGraphServiceClientWithCredentials(cred, scopes)
-
 
 requestBody := graphmodels.NewEvent()
 subject := "Let's go for lunch"
@@ -44,8 +44,7 @@ interval := int32(1)
 pattern.SetInterval(&interval) 
 daysOfWeek := []graphmodels.DayOfWeekable {
 	dayOfWeek := graphmodels.MONDAY_DAYOFWEEK 
-	pattern.SetDayOfWeek(&dayOfWeek) 
-
+	pattern.SetDayOfWeek(&dayOfWeek)
 }
 pattern.SetDaysOfWeek(daysOfWeek)
 recurrence.SetPattern(pattern)
@@ -66,7 +65,7 @@ requestBody.SetLocation(location)
 
 attendee := graphmodels.NewAttendee()
 emailAddress := graphmodels.NewEmailAddress()
-address := "AdeleV@contoso.onmicrosoft.com"
+address := "AdeleV@contoso.com"
 emailAddress.SetAddress(&address) 
 name := "Adele Vance"
 emailAddress.SetName(&name) 
@@ -74,13 +73,13 @@ attendee.SetEmailAddress(emailAddress)
 type := graphmodels.REQUIRED_ATTENDEETYPE 
 attendee.SetType(&type) 
 
-attendees := []graphmodels.Objectable {
+attendees := []graphmodels.Attendeeable {
 	attendee,
-
 }
 requestBody.SetAttendees(attendees)
 
-result, err := graphClient.Me().Events().Post(context.Background(), requestBody, nil)
+// To initialize your graphClient, see https://learn.microsoft.com/en-us/graph/sdks/create-client?from=snippets&tabs=go
+events, err := graphClient.Me().Events().Post(context.Background(), requestBody, nil)
 
 
 ```

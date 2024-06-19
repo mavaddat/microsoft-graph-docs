@@ -1,24 +1,25 @@
 ---
 title: "Grant or revoke API permissions programmatically"
 description: "Learn how to use Microsoft Graph to programmatically grant and revoke delegated and application API permissions for an app. This method is an alternative to interactive admin consent."
-author: "FaithOmbongi"
+author: FaithOmbongi
 ms.author: ombongifaith
 ms.reviewer: psignoret, jackson.woods
 ms.localizationpriority: medium
-ms.prod: "applications"
+ms.subservice: entra-applications
 zone_pivot_groups: grant-api-permissions
-ms.custom: template-how-to
-ms.date: 12/09/2022
+ms.topic: how-to
+ms.date: 06/12/2024
+#Customer intent: As a developer, I want to learn how to grant and revoke API permissions for an app using Microsoft Graph, and bypass the interactive consent prompt available on the Microsoft Entra portal.
 ---
 
 # Grant or revoke API permissions programmatically
 
-When you grant API permissions to a client app in Azure Active Directory (Azure AD), the permission grants are recorded as objects that can be accessed, updated, or deleted like your data. Using Microsoft Graph to directly create permission grants is a programmatic alternative to [interactive consent](/azure/active-directory/manage-apps/consent-and-permissions-overview) and can be useful for automation scenarios, bulk management, or other custom operations in your organization.
+When you grant API permissions to a client app in Microsoft Entra ID, the permission grants are recorded as objects that can be accessed, updated, or deleted like any other data. Using Microsoft Graph to directly create permission grants is a programmatic alternative to [interactive consent](/azure/active-directory/manage-apps/consent-and-permissions-overview) and can be useful for automation scenarios, bulk management, or other custom operations in your organization.
 
 <!-- start the grant-application-permissions zone -->
 ::: zone pivot="grant-application-permissions"
 
-In this guide, you'll learn how to grant and revoke app roles for an app using Microsoft Graph. **App roles**, also called *application permissions*, or *direct access permissions*, allow an app to call an API with its own identity.
+In this article, you learn how to grant and revoke app roles for an app using Microsoft Graph. **App roles**, also called *application permissions*, or *direct access permissions*, allow an app to call an API with its own identity. Learn more about [application permissions](permissions-overview.md#application-permissions).
 
 > [!CAUTION]
 > Be careful! Permissions granted programmatically are not subject to review or confirmation. They take effect immediately.
@@ -27,23 +28,18 @@ In this guide, you'll learn how to grant and revoke app roles for an app using M
 
 To complete these instructions, you need the following resources and privileges:
 
-- A working Azure AD tenant.
-- You'll run the requests in this article as a user. You must complete the following steps:
-    - Sign in to an app such as [Graph Explorer](https://developer.microsoft.com/graph/graph-explorer) or [Postman](/graph/use-postman) as a user with privileges to create applications in the tenant.
-    - In the app you've signed in to, consent to the *Application.Read.All* and *AppRoleAssignment.ReadWrite.All* delegated permissions on behalf of the signed-in user. You don't need to consent on behalf of your organization.
-    - Get the object ID of the client service principal to which you'll grant app roles. In this article, the client service principal is identified by ID `b0d9b9e3-0ecf-4bfd-8dab-9273dd055a94`.
-
-<!--
-> [!CAUTION]
-> The `AppRoleAssignment.ReadWrite.All` permission allows an app or service to manage permission grants and elevate privileges for any app, user, or group in your organization. Access to this service must be properly secured and should be limited to as few users as possible.
--->
+- A valid Microsoft Entra tenant.
+- You run the requests in this article in a delegated context. You must complete the following steps:
+    - Sign in to an API client such as [Graph Explorer](https://aka.ms/ge) as a user with privileges to create applications in the tenant. The privileges to create permission grants might be limited or controlled in your tenant through admin-configured [app consent policies](/entra/identity/enterprise-apps/manage-app-consent-policies).
+    - In the app you're signed in to, consent to the *Application.Read.All* and *AppRoleAssignment.ReadWrite.All* delegated permissions on behalf of the signed-in user. You don't need to consent on behalf of your organization.
+    - Get the object ID of the client service principal to which you grant app roles. In this article, the client service principal is identified by ID `b0d9b9e3-0ecf-4bfd-8dab-9273dd055a94`. In the Microsoft Entra admin center, expand the **Identity** menu > expand **Applications** > select **Enterprise applications** > **App applications** to find the client service principal. Select it and on the **Overview** page, copy the Object ID value.
 
 > [!CAUTION]
 > Apps that have been granted the *AppRoleAssignment.ReadWrite.All* permission should only be accessed by appropriate users.
 
 ## Step 1: Get the appRoles of the resource service principal
 
-Before you can grant app roles, you must first identify the app roles to grant and the resource service principal that exposes the app roles. App roles are defined in the **appRoles** object of a service principal. In this article, you'll use the Microsoft Graph service principal in the tenant as your resource service principal.
+Before you can grant app roles, you must first identify the resource service principal that exposes the app roles you want to grant. App roles are defined in the **appRoles** object of a service principal. In this article, you use the Microsoft Graph service principal in your tenant as the resource service principal.
 
 ### Request
 
@@ -60,34 +56,42 @@ GET https://graph.microsoft.com/v1.0/servicePrincipals?$filter=displayName eq 'M
 ```
 
 # [C#](#tab/csharp)
-[!INCLUDE [sample-code](../includes/snippets/csharp/get-approles-for-microsoftgraph-csharp-snippets.md)]
+[!INCLUDE [sample-code](../includes/snippets/csharp/v1/get-approles-for-microsoftgraph-csharp-snippets.md)]
+[!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
+
+# [CLI](#tab/cli)
+[!INCLUDE [sample-code](../includes/snippets/cli/v1/get-approles-for-microsoftgraph-cli-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 # [Go](#tab/go)
-[!INCLUDE [sample-code](../includes/snippets/go/get-approles-for-microsoftgraph-go-snippets.md)]
+[!INCLUDE [sample-code](../includes/snippets/go/v1/get-approles-for-microsoftgraph-go-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 # [Java](#tab/java)
-[!INCLUDE [sample-code](../includes/snippets/java/get-approles-for-microsoftgraph-java-snippets.md)]
+[!INCLUDE [sample-code](../includes/snippets/java/v1/get-approles-for-microsoftgraph-java-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 # [JavaScript](#tab/javascript)
-[!INCLUDE [sample-code](../includes/snippets/javascript/get-approles-for-microsoftgraph-javascript-snippets.md)]
+[!INCLUDE [sample-code](../includes/snippets/javascript/v1/get-approles-for-microsoftgraph-javascript-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 # [PHP](#tab/php)
-[!INCLUDE [sample-code](../includes/snippets/php/get-approles-for-microsoftgraph-php-snippets.md)]
+[!INCLUDE [sample-code](../includes/snippets/php/v1/get-approles-for-microsoftgraph-php-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 # [PowerShell](#tab/powershell)
-[!INCLUDE [sample-code](../includes/snippets/powershell/get-approles-for-microsoftgraph-powershell-snippets.md)]
+[!INCLUDE [sample-code](../includes/snippets/powershell/v1/get-approles-for-microsoftgraph-powershell-snippets.md)]
+[!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
+
+# [Python](#tab/python)
+[!INCLUDE [sample-code](../includes/snippets/python/v1/get-approles-for-microsoftgraph-python-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 ---
 
 ### Response
 
-The following object is an example of the response.
+The following example shows the response.
 
 > **Note:** The response object shown here might be shortened for readability.
 
@@ -127,12 +131,18 @@ Content-type: application/json
 
 ## Step 2: Grant an app role to a client service principal
 
-In this step, you'll grant your app an app role that's exposed by Microsoft Graph, thereby creating an **app role assignment**. From Step 1, the object ID of Microsoft Graph is `7ea9e944-71ce-443d-811c-71e8047b557a` and the app role `User.Read.All` is identified by ID `df021288-bdef-4463-88db-98f22de89214`.
+In this step, you grant your app an app role that's exposed by Microsoft Graph, resulting in an **app role assignment**. From Step 1, the object ID of Microsoft Graph is `7ea9e944-71ce-443d-811c-71e8047b557a` and the app role `User.Read.All` is identified by ID `df021288-bdef-4463-88db-98f22de89214`. 
 
 ### Request
 
 The following request grants your client app (the principal of ID `b0d9b9e3-0ecf-4bfd-8dab-9273dd055a94`) an app role of ID `df021288-bdef-4463-88db-98f22de89214` that's exposed by a resource service principal of ID `7ea9e944-71ce-443d-811c-71e8047b557a`.
 
+> [!NOTE] 
+> If you're using the Python SDK, import the following libraries:
+> ```
+> from msgraph.generated.models.app_role_assignment import AppRoleAssignment
+> from msgraph.generated.models.service_principal import ServicePrincipal
+> ```
 
 # [HTTP](#tab/http)
 <!-- {
@@ -151,27 +161,35 @@ Content-Type: application/json
 ```
 
 # [C#](#tab/csharp)
-[!INCLUDE [sample-code](../includes/snippets/csharp/grant-approles-using-approleassignedto-csharp-snippets.md)]
+[!INCLUDE [sample-code](../includes/snippets/csharp/v1/grant-approles-using-approleassignedto-csharp-snippets.md)]
+[!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
+
+# [CLI](#tab/cli)
+[!INCLUDE [sample-code](../includes/snippets/cli/v1/grant-approles-using-approleassignedto-cli-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 # [Go](#tab/go)
-[!INCLUDE [sample-code](../includes/snippets/go/grant-approles-using-approleassignedto-go-snippets.md)]
+[!INCLUDE [sample-code](../includes/snippets/go/v1/grant-approles-using-approleassignedto-go-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 # [Java](#tab/java)
-[!INCLUDE [sample-code](../includes/snippets/java/grant-approles-using-approleassignedto-java-snippets.md)]
+[!INCLUDE [sample-code](../includes/snippets/java/v1/grant-approles-using-approleassignedto-java-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 # [JavaScript](#tab/javascript)
-[!INCLUDE [sample-code](../includes/snippets/javascript/grant-approles-using-approleassignedto-javascript-snippets.md)]
+[!INCLUDE [sample-code](../includes/snippets/javascript/v1/grant-approles-using-approleassignedto-javascript-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 # [PHP](#tab/php)
-[!INCLUDE [snippet-not-available](../includes/snippets/snippet-not-available.md)]
+[!INCLUDE [sample-code](../includes/snippets/php/v1/grant-approles-using-approleassignedto-php-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 # [PowerShell](#tab/powershell)
-[!INCLUDE [sample-code](../includes/snippets/powershell/grant-approles-using-approleassignedto-powershell-snippets.md)]
+[!INCLUDE [sample-code](../includes/snippets/powershell/v1/grant-approles-using-approleassignedto-powershell-snippets.md)]
+[!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
+
+# [Python](#tab/python)
+[!INCLUDE [sample-code](../includes/snippets/python/v1/grant-approles-using-approleassignedto-python-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 ---
@@ -201,9 +219,11 @@ Content-type: application/json
 }
 ```
 
-To confirm all principals with role assignments to the resource service principal, run the following request.
+### Confirm the app role assignment
 
-### Request
+To verify the principals with role assignments to the resource service principal, run the following request.
+
+#### Request
 
 
 # [HTTP](#tab/http)
@@ -216,34 +236,42 @@ GET https://graph.microsoft.com/v1.0/servicePrincipals/7ea9e944-71ce-443d-811c-7
 ```
 
 # [C#](#tab/csharp)
-[!INCLUDE [sample-code](../includes/snippets/csharp/get-approles-for-sp-approleassignedto-csharp-snippets.md)]
+[!INCLUDE [sample-code](../includes/snippets/csharp/v1/get-approles-for-sp-approleassignedto-csharp-snippets.md)]
+[!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
+
+# [CLI](#tab/cli)
+[!INCLUDE [sample-code](../includes/snippets/cli/v1/get-approles-for-sp-approleassignedto-cli-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 # [Go](#tab/go)
-[!INCLUDE [sample-code](../includes/snippets/go/get-approles-for-sp-approleassignedto-go-snippets.md)]
+[!INCLUDE [sample-code](../includes/snippets/go/v1/get-approles-for-sp-approleassignedto-go-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 # [Java](#tab/java)
-[!INCLUDE [sample-code](../includes/snippets/java/get-approles-for-sp-approleassignedto-java-snippets.md)]
+[!INCLUDE [sample-code](../includes/snippets/java/v1/get-approles-for-sp-approleassignedto-java-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 # [JavaScript](#tab/javascript)
-[!INCLUDE [sample-code](../includes/snippets/javascript/get-approles-for-sp-approleassignedto-javascript-snippets.md)]
+[!INCLUDE [sample-code](../includes/snippets/javascript/v1/get-approles-for-sp-approleassignedto-javascript-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 # [PHP](#tab/php)
-[!INCLUDE [sample-code](../includes/snippets/php/get-approles-for-sp-approleassignedto-php-snippets.md)]
+[!INCLUDE [sample-code](../includes/snippets/php/v1/get-approles-for-sp-approleassignedto-php-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 # [PowerShell](#tab/powershell)
-[!INCLUDE [sample-code](../includes/snippets/powershell/get-approles-for-sp-approleassignedto-powershell-snippets.md)]
+[!INCLUDE [sample-code](../includes/snippets/powershell/v1/get-approles-for-sp-approleassignedto-powershell-snippets.md)]
+[!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
+
+# [Python](#tab/python)
+[!INCLUDE [sample-code](../includes/snippets/python/v1/get-approles-for-sp-approleassignedto-python-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 ---
 
-### Response
+#### Response
 
-The response object includes a collection of app role assignments to your resource service principal and includes the app role assignment you created using the POST request.
+The response object includes a collection of app role assignments to your resource service principal and includes the app role assignment you created in the preceding request.
 
 <!-- {
   "blockType": "response",
@@ -287,27 +315,35 @@ DELETE https://graph.microsoft.com/v1.0/servicePrincipals/7ea9e944-71ce-443d-811
 ```
 
 # [C#](#tab/csharp)
-[!INCLUDE [sample-code](../includes/snippets/csharp/revoke-approles-using-approleassignedto-csharp-snippets.md)]
+[!INCLUDE [sample-code](../includes/snippets/csharp/v1/revoke-approles-using-approleassignedto-csharp-snippets.md)]
+[!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
+
+# [CLI](#tab/cli)
+[!INCLUDE [sample-code](../includes/snippets/cli/v1/revoke-approles-using-approleassignedto-cli-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 # [Go](#tab/go)
-[!INCLUDE [sample-code](../includes/snippets/go/revoke-approles-using-approleassignedto-go-snippets.md)]
+[!INCLUDE [sample-code](../includes/snippets/go/v1/revoke-approles-using-approleassignedto-go-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 # [Java](#tab/java)
-[!INCLUDE [sample-code](../includes/snippets/java/revoke-approles-using-approleassignedto-java-snippets.md)]
+[!INCLUDE [sample-code](../includes/snippets/java/v1/revoke-approles-using-approleassignedto-java-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 # [JavaScript](#tab/javascript)
-[!INCLUDE [sample-code](../includes/snippets/javascript/revoke-approles-using-approleassignedto-javascript-snippets.md)]
+[!INCLUDE [sample-code](../includes/snippets/javascript/v1/revoke-approles-using-approleassignedto-javascript-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 # [PHP](#tab/php)
-[!INCLUDE [sample-code](../includes/snippets/php/revoke-approles-using-approleassignedto-php-snippets.md)]
+[!INCLUDE [sample-code](../includes/snippets/php/v1/revoke-approles-using-approleassignedto-php-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 # [PowerShell](#tab/powershell)
-[!INCLUDE [sample-code](../includes/snippets/powershell/revoke-approles-using-approleassignedto-powershell-snippets.md)]
+[!INCLUDE [sample-code](../includes/snippets/powershell/v1/revoke-approles-using-approleassignedto-powershell-snippets.md)]
+[!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
+
+# [Python](#tab/python)
+[!INCLUDE [sample-code](../includes/snippets/python/v1/revoke-approles-using-approleassignedto-python-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 ---
@@ -323,11 +359,11 @@ HTTP/1.1 204 No Content
 
 ## Conclusion
 
-You've learned how to manage app role grants for a service principal. This method of granting permissions using Microsoft Graph is an alternative [interactive consent](/azure/active-directory/develop/application-consent-experience) and should be used with caution.
+You learned how to manage app role grants for a service principal. This method of granting permissions using Microsoft Graph is an alternative [interactive consent](/azure/active-directory/develop/application-consent-experience) and should be used with caution.
 
-## See also
+## Related content
 
-+ [Tutorial: Grant app roles in Azure AD using Microsoft Graph PowerShell](/powershell/microsoftgraph/tutorial-grant-app-only-api-permissions)
++ [Tutorial: Grant app roles in Microsoft Entra ID using Microsoft Graph PowerShell](/powershell/microsoftgraph/tutorial-grant-app-only-api-permissions)
 + [appRoleAssignment resource type](/graph/api/resources/approleassignment)
 
 ::: zone-end
@@ -337,7 +373,7 @@ You've learned how to manage app role grants for a service principal. This metho
 
 ::: zone pivot="grant-delegated-permissions"
 
-In this guide, you'll learn how to grant and revoke delegated permissions for an app using Microsoft Graph. **Delegated permissions**, also called *scopes* or *OAuth2 permissions*, allow an app to call an API on behalf of a signed-in user.
+In this article, you learn how to grant and revoke delegated permissions for an app using Microsoft Graph. **Delegated permissions**, also called *scopes*, or *OAuth2 permissions*, allow an app to call an API on behalf of a signed-in user. Learn more about [delegated permissions](permissions-overview.md#delegated-permissions).
 
 > [!CAUTION]
 > Be careful! Permissions granted programmatically are not subject to review or confirmation. They take effect immediately.
@@ -346,23 +382,18 @@ In this guide, you'll learn how to grant and revoke delegated permissions for an
 
 To complete these instructions, you need the following resources and privileges:
 
-- A working Azure AD tenant.
-- You'll run the requests in this article as a user. You must complete the following steps:
-    - Sign in to an app such as [Graph Explorer](https://developer.microsoft.com/graph/graph-explorer) or [Postman](/graph/use-postman) as a user with privileges to create applications in the tenant.
-    - In the app you've signed in to, consent to the *Application.Read.All*, *DelegatedPermissionGrant.ReadWrite.All* delegated permissions on behalf of the signed-in user. You don't need to consent on behalf of your organization.
-    - Get the object ID of the client service principal to which you'll grant delegated permissions on behalf of a user. In this article, the client service principal is identified by ID `b0d9b9e3-0ecf-4bfd-8dab-9273dd055a94`.
-
-<!--
-> [!CAUTION]
-> The `DelegatedPermissionGrant.ReadWrite.All` permission allows an app or service to manage permission grants and elevate privileges for any app or user in your organization. Access to this service must be properly secured and should be limited to as few users as possible.
--->
+- A valid Microsoft Entra tenant.
+- You run the requests in this article as a user. You must complete the following steps:
+    - Sign in to an API client such as [Graph Explorer](https://aka.ms/ge) as a user with the *Cloud Application Administrator* Microsoft Entra role, which is the least privilege role for creating applications and granting consent to delegated permissions in the tenant. The privileges to create permission grants might be limited or controlled in your tenant through admin-configured [app consent policies](/entra/identity/enterprise-apps/manage-app-consent-policies).
+    - In the app you're signed in to, consent to the *Application.Read.All*, *DelegatedPermissionGrant.ReadWrite.All* delegated permissions on behalf of the signed-in user. You don't need to consent on behalf of your organization.
+    - Get the object ID of the client service principal to which you grant delegated permissions on behalf of a user. In this article, the client service principal is identified by ID `b0d9b9e3-0ecf-4bfd-8dab-9273dd055a94`. In the Microsoft Entra admin center, expand the **Identity** menu > expand **Applications** > select **Enterprise applications** > **App applications** to find the client service principal. Select it and on the **Overview** page, copy the Object ID value.
 
 > [!CAUTION]
 > Apps that have been granted the *DelegatedPermissionGrant.ReadWrite.All* permission should only be accessed by appropriate users.
 
 ## Step 1: Get the delegated permissions of the resource service principal
 
-Before you can grant delegated permissions, you must first identify the delegated permissions to grant and the resource service principal that exposes the delegated permissions. Delegated permissions are defined in the **oauth2PermissionScopes** object of a service principal. In this article, you'll use the Microsoft Graph service principal in the tenant as your resource service principal.
+Before you can grant delegated permissions, you must first identify the resource service principal that exposes the delegated permissions you want to grant. Delegated permissions are defined in the **oauth2PermissionScopes** object of a service principal. In this article, you use the Microsoft Graph service principal in your tenant as the resource service principal.
 
 ### Request
 
@@ -379,34 +410,42 @@ GET https://graph.microsoft.com/v1.0/servicePrincipals?$filter=displayName eq 'M
 ```
 
 # [C#](#tab/csharp)
-[!INCLUDE [sample-code](../includes/snippets/csharp/get-scopes-for-microsoftgraph-csharp-snippets.md)]
+[!INCLUDE [sample-code](../includes/snippets/csharp/v1/get-scopes-for-microsoftgraph-csharp-snippets.md)]
+[!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
+
+# [CLI](#tab/cli)
+[!INCLUDE [sample-code](../includes/snippets/cli/v1/get-scopes-for-microsoftgraph-cli-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 # [Go](#tab/go)
-[!INCLUDE [sample-code](../includes/snippets/go/get-scopes-for-microsoftgraph-go-snippets.md)]
+[!INCLUDE [sample-code](../includes/snippets/go/v1/get-scopes-for-microsoftgraph-go-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 # [Java](#tab/java)
-[!INCLUDE [sample-code](../includes/snippets/java/get-scopes-for-microsoftgraph-java-snippets.md)]
+[!INCLUDE [sample-code](../includes/snippets/java/v1/get-scopes-for-microsoftgraph-java-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 # [JavaScript](#tab/javascript)
-[!INCLUDE [sample-code](../includes/snippets/javascript/get-scopes-for-microsoftgraph-javascript-snippets.md)]
+[!INCLUDE [sample-code](../includes/snippets/javascript/v1/get-scopes-for-microsoftgraph-javascript-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 # [PHP](#tab/php)
-[!INCLUDE [sample-code](../includes/snippets/php/get-scopes-for-microsoftgraph-php-snippets.md)]
+[!INCLUDE [sample-code](../includes/snippets/php/v1/get-scopes-for-microsoftgraph-php-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 # [PowerShell](#tab/powershell)
-[!INCLUDE [sample-code](../includes/snippets/powershell/get-scopes-for-microsoftgraph-powershell-snippets.md)]
+[!INCLUDE [sample-code](../includes/snippets/powershell/v1/get-scopes-for-microsoftgraph-powershell-snippets.md)]
+[!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
+
+# [Python](#tab/python)
+[!INCLUDE [sample-code](../includes/snippets/python/v1/get-scopes-for-microsoftgraph-python-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 ---
 
 ### Response
 
-The following object is an example of the response.
+The following example shows the response.
 
 > **Note:** The response object shown here might be shortened for readability.
 
@@ -455,11 +494,13 @@ Content-type: application/json
 
 ## Step 2: Grant a delegated permission to the client service principal on behalf of a user
 
-In this step, you'll grant your app, on behalf of a user, a delegated permission that's exposed by Microsoft Graph, thereby creating an **delegated permission grant**. 
+### Request
+In this step, you grant your app, on behalf of a user, a delegated permission that's exposed by Microsoft Graph, resulting in a **delegated permission grant**. 
 
 + From Step 1, the object ID of Microsoft Graph in the tenant is `7ea9e944-71ce-443d-811c-71e8047b557a`
 + The delegated permissions `User.Read.All` and `Group.Read.All` are identified by the globally unique IDs `a154be20-db9c-4678-8ab7-66f6cc099a59` and `5f8c59db-677d-491f-a6b8-5f174b11ec1d` respectively.
 + The principal is a user identified by ID `3fbd929d-8c56-4462-851e-0eb9a7b3a2a5`.
++ The client service principal is identified by ID `b0d9b9e3-0ecf-4bfd-8dab-9273dd055a94`. This is the object **id** of the service principal and *not* its **appId**.
 
 
 # [HTTP](#tab/http)
@@ -481,27 +522,35 @@ Content-Type: application/json
 ```
 
 # [C#](#tab/csharp)
-[!INCLUDE [sample-code](../includes/snippets/csharp/grant-delegated-perms-sp-oauth2permissiongrants-csharp-snippets.md)]
+[!INCLUDE [sample-code](../includes/snippets/csharp/v1/grant-delegated-perms-sp-oauth2permissiongrants-csharp-snippets.md)]
+[!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
+
+# [CLI](#tab/cli)
+[!INCLUDE [sample-code](../includes/snippets/cli/v1/grant-delegated-perms-sp-oauth2permissiongrants-cli-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 # [Go](#tab/go)
-[!INCLUDE [sample-code](../includes/snippets/go/grant-delegated-perms-sp-oauth2permissiongrants-go-snippets.md)]
+[!INCLUDE [sample-code](../includes/snippets/go/v1/grant-delegated-perms-sp-oauth2permissiongrants-go-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 # [Java](#tab/java)
-[!INCLUDE [sample-code](../includes/snippets/java/grant-delegated-perms-sp-oauth2permissiongrants-java-snippets.md)]
+[!INCLUDE [sample-code](../includes/snippets/java/v1/grant-delegated-perms-sp-oauth2permissiongrants-java-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 # [JavaScript](#tab/javascript)
-[!INCLUDE [sample-code](../includes/snippets/javascript/grant-delegated-perms-sp-oauth2permissiongrants-javascript-snippets.md)]
+[!INCLUDE [sample-code](../includes/snippets/javascript/v1/grant-delegated-perms-sp-oauth2permissiongrants-javascript-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 # [PHP](#tab/php)
-[!INCLUDE [sample-code](../includes/snippets/php/grant-delegated-perms-sp-oauth2permissiongrants-php-snippets.md)]
+[!INCLUDE [sample-code](../includes/snippets/php/v1/grant-delegated-perms-sp-oauth2permissiongrants-php-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 # [PowerShell](#tab/powershell)
-[!INCLUDE [sample-code](../includes/snippets/powershell/grant-delegated-perms-sp-oauth2permissiongrants-powershell-snippets.md)]
+[!INCLUDE [sample-code](../includes/snippets/powershell/v1/grant-delegated-perms-sp-oauth2permissiongrants-powershell-snippets.md)]
+[!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
+
+# [Python](#tab/python)
+[!INCLUDE [sample-code](../includes/snippets/python/v1/grant-delegated-perms-sp-oauth2permissiongrants-python-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 ---
@@ -549,9 +598,11 @@ Content-type: application/json
 
 If you granted consent for all users in the tenant, the **consentType** in the response object would be `AllPrincipals`, and the **principalId** would be `null`.
 
-To confirm the delegated permissions assigned to the service principal on behalf of the user, you run the following request.
+### Confirm the permission grant
 
-### Request
+To verify the delegated permissions assigned to the service principal on behalf of the user, you run the following request.
+
+#### Request
 
 
 # [HTTP](#tab/http)
@@ -564,32 +615,40 @@ GET https://graph.microsoft.com/v1.0/oauth2PermissionGrants?$filter=clientId eq 
 ```
 
 # [C#](#tab/csharp)
-[!INCLUDE [sample-code](../includes/snippets/csharp/get-delegated-perms-sp-oauth2permissiongrants-csharp-snippets.md)]
+[!INCLUDE [sample-code](../includes/snippets/csharp/v1/get-delegated-perms-sp-oauth2permissiongrants-csharp-snippets.md)]
+[!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
+
+# [CLI](#tab/cli)
+[!INCLUDE [sample-code](../includes/snippets/cli/v1/get-delegated-perms-sp-oauth2permissiongrants-cli-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 # [Go](#tab/go)
-[!INCLUDE [sample-code](../includes/snippets/go/get-delegated-perms-sp-oauth2permissiongrants-go-snippets.md)]
+[!INCLUDE [sample-code](../includes/snippets/go/v1/get-delegated-perms-sp-oauth2permissiongrants-go-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 # [Java](#tab/java)
-[!INCLUDE [sample-code](../includes/snippets/java/get-delegated-perms-sp-oauth2permissiongrants-java-snippets.md)]
+[!INCLUDE [sample-code](../includes/snippets/java/v1/get-delegated-perms-sp-oauth2permissiongrants-java-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 # [JavaScript](#tab/javascript)
-[!INCLUDE [sample-code](../includes/snippets/javascript/get-delegated-perms-sp-oauth2permissiongrants-javascript-snippets.md)]
+[!INCLUDE [sample-code](../includes/snippets/javascript/v1/get-delegated-perms-sp-oauth2permissiongrants-javascript-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 # [PHP](#tab/php)
-[!INCLUDE [sample-code](../includes/snippets/php/get-delegated-perms-sp-oauth2permissiongrants-php-snippets.md)]
+[!INCLUDE [sample-code](../includes/snippets/php/v1/get-delegated-perms-sp-oauth2permissiongrants-php-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 # [PowerShell](#tab/powershell)
-[!INCLUDE [sample-code](../includes/snippets/powershell/get-delegated-perms-sp-oauth2permissiongrants-powershell-snippets.md)]
+[!INCLUDE [sample-code](../includes/snippets/powershell/v1/get-delegated-perms-sp-oauth2permissiongrants-powershell-snippets.md)]
+[!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
+
+# [Python](#tab/python)
+[!INCLUDE [sample-code](../includes/snippets/python/v1/get-delegated-perms-sp-oauth2permissiongrants-python-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 ---
 
-### Response
+#### Response
 <!-- {
   "blockType": "response",
   "truncated": true,
@@ -616,7 +675,7 @@ Content-type: application/json
 
 ## Step 3: Revoke delegated permissions granted to a service principal on behalf of a user [Optional]
 
-If a service principal has been granted multiple delegated permission grants on behalf of a user, you can choose to revoke either specific grants or all grants. Use this method to remove and revoke consent for the delegated permissions that you've assigned to Graph Explorer.
+If a service principal has been granted multiple delegated permission grants on behalf of a user, you can choose to revoke either specific grants or all grants. Use this method to remove and revoke consent for the delegated permissions that you assigned to the client service principal.
 
 + To revoke one or some grants, run a PATCH request on the oauth2PermissionGrant object and specify only the delegated permissions to retain in the **scope** parameter.
 + To revoke all grants, run a DELETE request on the oauth2PermissionGrant object.
@@ -641,27 +700,35 @@ Content-Type: application/json
 ```
 
 # [C#](#tab/csharp)
-[!INCLUDE [sample-code](../includes/snippets/csharp/revoke-scopes-oauth2permissiongrants-csharp-snippets.md)]
+[!INCLUDE [sample-code](../includes/snippets/csharp/v1/revoke-scopes-oauth2permissiongrants-csharp-snippets.md)]
+[!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
+
+# [CLI](#tab/cli)
+[!INCLUDE [sample-code](../includes/snippets/cli/v1/revoke-scopes-oauth2permissiongrants-cli-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 # [Go](#tab/go)
-[!INCLUDE [sample-code](../includes/snippets/go/revoke-scopes-oauth2permissiongrants-go-snippets.md)]
+[!INCLUDE [sample-code](../includes/snippets/go/v1/revoke-scopes-oauth2permissiongrants-go-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 # [Java](#tab/java)
-[!INCLUDE [sample-code](../includes/snippets/java/revoke-scopes-oauth2permissiongrants-java-snippets.md)]
+[!INCLUDE [sample-code](../includes/snippets/java/v1/revoke-scopes-oauth2permissiongrants-java-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 # [JavaScript](#tab/javascript)
-[!INCLUDE [sample-code](../includes/snippets/javascript/revoke-scopes-oauth2permissiongrants-javascript-snippets.md)]
+[!INCLUDE [sample-code](../includes/snippets/javascript/v1/revoke-scopes-oauth2permissiongrants-javascript-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 # [PHP](#tab/php)
-[!INCLUDE [sample-code](../includes/snippets/php/revoke-scopes-oauth2permissiongrants-php-snippets.md)]
+[!INCLUDE [sample-code](../includes/snippets/php/v1/revoke-scopes-oauth2permissiongrants-php-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 # [PowerShell](#tab/powershell)
-[!INCLUDE [sample-code](../includes/snippets/powershell/revoke-scopes-oauth2permissiongrants-powershell-snippets.md)]
+[!INCLUDE [sample-code](../includes/snippets/powershell/v1/revoke-scopes-oauth2permissiongrants-powershell-snippets.md)]
+[!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
+
+# [Python](#tab/python)
+[!INCLUDE [sample-code](../includes/snippets/python/v1/revoke-scopes-oauth2permissiongrants-python-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 ---
@@ -690,27 +757,35 @@ DELETE https://graph.microsoft.com/v1.0/oauth2PermissionGrants/47nZsM8O_UuNq5Jz3
 ```
 
 # [C#](#tab/csharp)
-[!INCLUDE [sample-code](../includes/snippets/csharp/revoke-all-scopes-oauth2permissiongrants-csharp-snippets.md)]
+[!INCLUDE [sample-code](../includes/snippets/csharp/v1/revoke-all-scopes-oauth2permissiongrants-csharp-snippets.md)]
+[!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
+
+# [CLI](#tab/cli)
+[!INCLUDE [sample-code](../includes/snippets/cli/v1/revoke-all-scopes-oauth2permissiongrants-cli-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 # [Go](#tab/go)
-[!INCLUDE [sample-code](../includes/snippets/go/revoke-all-scopes-oauth2permissiongrants-go-snippets.md)]
+[!INCLUDE [sample-code](../includes/snippets/go/v1/revoke-all-scopes-oauth2permissiongrants-go-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 # [Java](#tab/java)
-[!INCLUDE [sample-code](../includes/snippets/java/revoke-all-scopes-oauth2permissiongrants-java-snippets.md)]
+[!INCLUDE [sample-code](../includes/snippets/java/v1/revoke-all-scopes-oauth2permissiongrants-java-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 # [JavaScript](#tab/javascript)
-[!INCLUDE [sample-code](../includes/snippets/javascript/revoke-all-scopes-oauth2permissiongrants-javascript-snippets.md)]
+[!INCLUDE [sample-code](../includes/snippets/javascript/v1/revoke-all-scopes-oauth2permissiongrants-javascript-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 # [PHP](#tab/php)
-[!INCLUDE [sample-code](../includes/snippets/php/revoke-all-scopes-oauth2permissiongrants-php-snippets.md)]
+[!INCLUDE [sample-code](../includes/snippets/php/v1/revoke-all-scopes-oauth2permissiongrants-php-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 # [PowerShell](#tab/powershell)
-[!INCLUDE [sample-code](../includes/snippets/powershell/revoke-all-scopes-oauth2permissiongrants-powershell-snippets.md)]
+[!INCLUDE [sample-code](../includes/snippets/powershell/v1/revoke-all-scopes-oauth2permissiongrants-powershell-snippets.md)]
+[!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
+
+# [Python](#tab/python)
+[!INCLUDE [sample-code](../includes/snippets/python/v1/revoke-all-scopes-oauth2permissiongrants-python-snippets.md)]
 [!INCLUDE [sdk-documentation](../includes/snippets/snippets-sdk-documentation-link.md)]
 
 ---
@@ -726,11 +801,11 @@ HTTP/1.1 204 No Content
 
 ## Conclusion
 
-You've granted delegated permissions (or scopes) to a service principal. This method of granting permissions using Microsoft Graph is an alternative to [interactive consent](/azure/active-directory/develop/application-consent-experience) and should be used with caution.
+You granted delegated permissions (or scopes) to a service principal. This method of granting permissions using Microsoft Graph is an alternative to [interactive consent](/azure/active-directory/develop/application-consent-experience) and should be used with caution.
 
-## See also
+## Related content
 
-- [Tutorial: Grant delegated permissions in Azure AD using Microsoft Graph PowerShell](/powershell/microsoftgraph/tutorial-grant-delegated-api-permissions)
+- [Tutorial: Grant delegated permissions in Microsoft Entra ID using Microsoft Graph PowerShell](/powershell/microsoftgraph/tutorial-grant-delegated-api-permissions)
 - [oAuth2PermissionGrant resource type](/graph/api/resources/oauth2permissiongrant)
 
 ::: zone-end

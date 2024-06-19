@@ -5,24 +5,25 @@ description: "Automatically generated file. DO NOT MODIFY"
 ```go
 
 
+// Code snippets are only available for the latest major version. Current major version is $v0.*
+
+// Dependencies
 import (
 	  "context"
 	  msgraphsdk "github.com/microsoftgraph/msgraph-beta-sdk-go"
-	  graphconfig "github.com/microsoftgraph/msgraph-beta-sdk-go/users"
+	  graphusers "github.com/microsoftgraph/msgraph-beta-sdk-go/users"
 	  //other-imports
 )
 
-graphClient := msgraphsdk.NewGraphServiceClientWithCredentials(cred, scopes)
-
-
-requestParameters := &graphconfig.ItemInsightsUsedRequestBuilderGetQueryParameters{
+requestParameters := &graphusers.ItemInsightsUsedRequestBuilderGetQueryParameters{
 	Orderby: [] string {"LastUsed/LastAccessedDateTime desc"},
 }
-configuration := &graphconfig.ItemInsightsUsedRequestBuilderGetRequestConfiguration{
+configuration := &graphusers.ItemInsightsUsedRequestBuilderGetRequestConfiguration{
 	QueryParameters: requestParameters,
 }
 
-result, err := graphClient.Me().Insights().Used().Get(context.Background(), configuration)
+// To initialize your graphClient, see https://learn.microsoft.com/en-us/graph/sdks/create-client?from=snippets&tabs=go
+used, err := graphClient.Me().Insights().Used().Get(context.Background(), configuration)
 
 
 ```

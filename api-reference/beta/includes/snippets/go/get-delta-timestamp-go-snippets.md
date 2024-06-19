@@ -5,27 +5,28 @@ description: "Automatically generated file. DO NOT MODIFY"
 ```go
 
 
+// Code snippets are only available for the latest major version. Current major version is $v0.*
+
+// Dependencies
 import (
 	  "context"
 	  msgraphsdk "github.com/microsoftgraph/msgraph-beta-sdk-go"
-	  graphconfig "github.com/microsoftgraph/msgraph-beta-sdk-go/drives"
+	  graphdrives "github.com/microsoftgraph/msgraph-beta-sdk-go/drives"
 	  //other-imports
 )
-
-graphClient := msgraphsdk.NewGraphServiceClientWithCredentials(cred, scopes)
-
 
 
 requestToken := "2021-09-29T20:00:00Z"
 
-requestParameters := &graphconfig.DriveItemItemItemDelta()RequestBuilderGetQueryParameters{
+requestParameters := &graphdrives.DriveItemItemItemDeltaWithRequestBuilderGetQueryParameters{
 	Token: &requestToken,
 }
-configuration := &graphconfig.DriveItemItemItemDelta()RequestBuilderGetRequestConfiguration{
+configuration := &graphdrives.DriveItemItemItemDeltaWithRequestBuilderGetRequestConfiguration{
 	QueryParameters: requestParameters,
 }
 
-result, err := graphClient.Drives().ByDriveId("drive-id").Items().ByItemId("driveItem-id").Delta().Get(context.Background(), configuration)
+// To initialize your graphClient, see https://learn.microsoft.com/en-us/graph/sdks/create-client?from=snippets&tabs=go
+delta, err := graphClient.Drives().ByDriveId("drive-id").Items().ByDriveItemId("driveItem-id").Delta().GetAsDeltaGetResponse(context.Background(), configuration)
 
 
 ```

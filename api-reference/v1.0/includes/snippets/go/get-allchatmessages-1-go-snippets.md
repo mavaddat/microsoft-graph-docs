@@ -5,27 +5,28 @@ description: "Automatically generated file. DO NOT MODIFY"
 ```go
 
 
+// Code snippets are only available for the latest major version. Current major version is $v1.*
+
+// Dependencies
 import (
 	  "context"
 	  msgraphsdk "github.com/microsoftgraph/msgraph-sdk-go"
-	  graphconfig "github.com/microsoftgraph/msgraph-sdk-go/chats"
+	  graphchats "github.com/microsoftgraph/msgraph-sdk-go/chats"
 	  //other-imports
 )
-
-graphClient := msgraphsdk.NewGraphServiceClientWithCredentials(cred, scopes)
-
 
 
 requestTop := int32(2)
 
-requestParameters := &graphconfig.ChatItemMessagesRequestBuilderGetQueryParameters{
+requestParameters := &graphchats.ChatItemMessagesRequestBuilderGetQueryParameters{
 	Top: &requestTop,
 }
-configuration := &graphconfig.ChatItemMessagesRequestBuilderGetRequestConfiguration{
+configuration := &graphchats.ChatItemMessagesRequestBuilderGetRequestConfiguration{
 	QueryParameters: requestParameters,
 }
 
-result, err := graphClient.Chats().ByChatId("chat-id").Messages().Get(context.Background(), configuration)
+// To initialize your graphClient, see https://learn.microsoft.com/en-us/graph/sdks/create-client?from=snippets&tabs=go
+messages, err := graphClient.Chats().ByChatId("chat-id").Messages().Get(context.Background(), configuration)
 
 
 ```

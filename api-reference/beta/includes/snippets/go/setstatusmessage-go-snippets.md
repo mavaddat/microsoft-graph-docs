@@ -5,17 +5,18 @@ description: "Automatically generated file. DO NOT MODIFY"
 ```go
 
 
+// Code snippets are only available for the latest major version. Current major version is $v0.*
+
+// Dependencies
 import (
 	  "context"
 	  msgraphsdk "github.com/microsoftgraph/msgraph-beta-sdk-go"
-	  graphmodels "github.com/microsoftgraph/msgraph-beta-sdk-go/Users/Item/Presence/SetStatusMessage"
+	  graphusers "github.com/microsoftgraph/msgraph-beta-sdk-go/users"
+	  graphmodels "github.com/microsoftgraph/msgraph-beta-sdk-go/models"
 	  //other-imports
 )
 
-graphClient := msgraphsdk.NewGraphServiceClientWithCredentials(cred, scopes)
-
-
-requestBody := graphmodels.NewSetStatusMessagePostRequestBody()
+requestBody := graphusers.NewSetStatusMessagePostRequestBody()
 statusMessage := graphmodels.NewPresenceStatusMessage()
 message := graphmodels.NewItemBody()
 content := "Hey I'm currently in a meeting."
@@ -31,6 +32,7 @@ expiryDateTime.SetTimeZone(&timeZone)
 statusMessage.SetExpiryDateTime(expiryDateTime)
 requestBody.SetStatusMessage(statusMessage)
 
+// To initialize your graphClient, see https://learn.microsoft.com/en-us/graph/sdks/create-client?from=snippets&tabs=go
 graphClient.Users().ByUserId("user-id").Presence().SetStatusMessage().Post(context.Background(), requestBody, nil)
 
 

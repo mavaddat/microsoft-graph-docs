@@ -3,7 +3,7 @@ title: "passiveDnsRecord resource type"
 description: "Represents a passive DNS record."
 author: "joerattazzi-microsoft"
 ms.localizationpriority: medium
-ms.prod: "security"
+ms.subservice: "security"
 doc_type: resourcePageType
 ---
 
@@ -13,6 +13,8 @@ Namespace: microsoft.graph.security
 
 [!INCLUDE [beta-disclaimer](../../includes/beta-disclaimer.md)]
 
+[!INCLUDE [threatintelligence-api-disclaimer](../../includes/threatintelligence-api-disclaimer.md)]
+
 Represents a passive DNS record. Passive DNS is a system of record that stores DNS resolution data for a given location, record, and timeframe. This historical resolution data set allows users to view which domains resolved to an IP address and vice versa. This data set allows for time-based correlation based on domain or IP overlap. Passive DNS might enable the identification of previously unknown or newly created threat actor infrastructure.
 
 Inherits from [microsoft.graph.security.artifact](../resources/security-artifact.md).
@@ -21,7 +23,7 @@ Inherits from [microsoft.graph.security.artifact](../resources/security-artifact
 
 |Method|Return type|Description|
 |:---|:---|:---|
-|[Get passiveDns](../api/security-passivednsrecord-get.md)|[microsoft.graph.security.passiveDnsRecord](../resources/security-passivednsrecord.md)|Read the properties and relationships of a [microsoft.graph.security.passiveDnsRecord](../resources/security-passivednsrecord.md) object.|
+|[Get passive DNS record](../api/security-passivednsrecord-get.md)|[microsoft.graph.security.passiveDnsRecord](../resources/security-passivednsrecord.md)|Read the properties and relationships of a [microsoft.graph.security.passiveDnsRecord](../resources/security-passivednsrecord.md) object.|
 
 ## Properties
 

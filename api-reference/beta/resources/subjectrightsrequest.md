@@ -3,7 +3,7 @@ title: "subjectRightsRequest resource type"
 description: "Represents the properties of a subject rights request."
 author: "skadam-msft"
 ms.localizationpriority: medium
-ms.prod: "compliance"
+ms.subservice: "compliance"
 doc_type: resourcePageType
 ---
 
@@ -13,21 +13,21 @@ Namespace: microsoft.graph
 
 [!INCLUDE [beta-disclaimer](../../includes/beta-disclaimer.md)]
 
-Represents the properties of a subject rights request, which is a formal request by a data subject to a controller to take an action on their personal data. 
+Represents the properties of a subject rights request, which is a formal request by a data subject to a controller to take an action on their personal data.
 
 Inherits from [entity](../resources/entity.md).
 
 ## Methods
 |Method|Return type|Description|
 |:---|:---|:---|
-|[List subjectRightsRequests](../api/subjectRightsRequest-list.md)|[subjectRightsRequest](../resources/subjectRightsRequest.md) collection|Get a list of the [subjectRightsRequest](../resources/subjectRightsRequest.md) objects and their properties.|
-|[Create subjectRightsRequest](../api/subjectRightsRequest-post.md)|[subjectRightsRequest](../resources/subjectRightsRequest.md)|Create a new [subjectRightsRequest](../resources/subjectRightsRequest.md) object.|
-|[Get subjectRightsRequest](../api/subjectRightsRequest-get.md)|[subjectRightsRequest](../resources/subjectRightsRequest.md)|Read the properties and relationships of a [subjectRightsRequest](../resources/subjectRightsRequest.md) object.|
-|[Update subjectRightsRequest](../api/subjectRightsRequest-update.md)|[subjectRightsRequest](../resources/subjectRightsRequest.md)|Update the properties of a [subjectRightsRequest](../resources/subjectRightsRequest.md) object.|
-|[getFinalAttachment](../api/subjectRightsRequest-getfinalattachment.md)|Stream|Get the final attachment for the request. The attachment is a zip file that contains all the files that where included by the privacy administrator.|
-|[getFinalReport](../api/subjectRightsRequest-getfinalreport.md)|Stream|Get the final report for the request. The report is a text file that contains information about the files that where included by the privacy administrator.|
-|[List notes](../api/subjectRightsRequest-list-notes.md)|[authoredNote](../resources/authorednote.md) collection|Get the authoredNote resources from the notes navigation property.|
-|[Create authoredNote](../api/subjectRightsRequest-post-notes.md)|[authoredNote](../resources/authorednote.md)|Create a new authoredNote object.|
+|[List](../api/subjectrightsrequest-list.md)|subjectRightsRequest collection|Get a list of the subjectRightsRequest objects and their properties.|
+|[Create](../api/subjectrightsrequest-post.md)|subjectRightsRequest|Create a new subjectRightsRequest object.|
+|[Get](../api/subjectrightsrequest-get.md)|subjectRightsRequest|Read the properties and relationships of a subjectRightsRequest object.|
+|[Update](../api/subjectrightsrequest-update.md)|subjectRightsRequest|Update the properties of a subjectRightsRequest object.|
+|[Get final attachment](../api/subjectrightsrequest-getfinalattachment.md)|Stream|Get the final attachment for the request. The attachment is a zip file that contains all the files that were included by the privacy administrator.|
+|[Get final report](../api/subjectrightsrequest-getfinalreport.md)|Stream|Get the final report for the request. The report is a text file that contains information about the files that were included by the privacy administrator.|
+|[List notes](../api/subjectrightsrequest-list-notes.md)|[authoredNote](../resources/authorednote.md) collection|Get the authoredNote resources from the notes navigation property.|
+|[Create note](../api/subjectrightsrequest-post-notes.md)|[authoredNote](../resources/authorednote.md)|Create a new authoredNote object.|
 
 ## Properties
 |Property|Type|Description|
@@ -45,15 +45,15 @@ Inherits from [entity](../resources/entity.md).
 |displayName|String|The name of the request.|
 | externalId           | String| The external ID for the request that is immutable after creation and is used for tracking the request for the external system. This property is defined only for APIs accessed using the `\security` query path and not the `\privacy` query path.|
 |history|[subjectRightsRequestHistory](../resources/subjectrightsrequesthistory.md) collection|Collection of history change events.|
-| includeAllVersions   | Boolean | Include all versions of the documents. By default, the current copies of the documents will be returned. If SharePoint sites have versioning enabled, including all versions will include the historical copies of the documents. This property is defined only for APIs accessed using the `\security` query path and not the `\privacy` query path.|
+| includeAllVersions   | Boolean | Include all versions of the documents. By default, the current copies of the documents will be returned. If SharePoint sites have versioning enabled, including all versions include the historical copies of the documents. This property is defined only for APIs accessed using the `\security` query path and not the `\privacy` query path.|
 | includeAuthoredContent| Boolean | Include content authored by the data subject. This property is defined only for APIs accessed using the `\security` query path and not the `\privacy` query path.|
 |insight|[subjectRightsRequestDetail](../resources/subjectrightsrequestdetail.md)|Insight about the request.|
 |internalDueDateTime|DateTimeOffset|The date and time when the request is internally due. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is `2014-01-01T00:00:00Z`.|
 |lastModifiedBy|[identitySet](../resources/identityset.md)|Identity information for the entity that last modified the request.|
 |lastModifiedDateTime|DateTimeOffset|The date and time when the request was last modified. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is `2014-01-01T00:00:00Z`.|
 | mailboxLocations     | [subjectRightsRequestMailboxLocation](../resources/subjectrightsrequestmailboxlocation.md)|The mailbox locations that should be searched. This property is defined only for APIs accessed using the `\security` query path and not the `\privacy` query path.|
-| pauseAfterEstimate   | Boolean| Pause the request after estimate has finished. By default, the data estimate will run and then pause, allowing you to preview results and then select the option to retrieve data in the UI. You can set this property to `false` if you want it to perform the estimate and then automatically begin with the retrieval of the content. This property is defined only for APIs accessed using the `\security` query path and not the `\privacy` query path.|
-|regulations|String collection|List of regulations that this request will fulfill.|
+| pauseAfterEstimate   | Boolean| Pause the request after estimate has finished. By default, the data estimate runs and then pauses, allowing you to preview results and then select the option to retrieve data in the UI. You can set this property to `false` if you want it to perform the estimate and then automatically begin with the retrieval of the content. This property is defined only for APIs accessed using the `\security` query path and not the `\privacy` query path.|
+|regulations|String collection|List of regulations that this request fulfills.|
 | siteLocations| [subjectRightsRequestSiteLocation](../resources/subjectrightsrequestsitelocation.md)| The SharePoint and OneDrive site locations that should be searched. This property is defined only for APIs accessed using the `\security` query path and not the `\privacy` query path.|
 |stages|[subjectRightsRequestStageDetail](../resources/subjectrightsrequeststagedetail.md) collection|Information about the different stages for the request.|
 |status|subjectRightsRequestStatus|The status of the request. Possible values are: `active`, `closed`, `unknownFutureValue`.|
@@ -66,7 +66,7 @@ Inherits from [entity](../resources/entity.md).
 |team|[team](../resources/team.md)|Information about the Microsoft Teams team that was created for the request.|
 
 ## JSON representation
-The following is a JSON representation of the resource.
+The following JSON representation shows the resource type.
 <!-- {
   "blockType": "resource",
   "keyProperty": "id",
@@ -111,7 +111,7 @@ The following is a JSON representation of the resource.
     "mailboxLocations": {
         "@odata.type": "microsoft.graph.subjectRightsRequestMailboxLocation"
     },
-    "pauseAfterDownload": "Boolean",
+    "pauseAfterEstimate": "Boolean",
     "regulations": [
         "String"
     ],

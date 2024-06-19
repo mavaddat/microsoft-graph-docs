@@ -5,21 +5,22 @@ description: "Automatically generated file. DO NOT MODIFY"
 ```go
 
 
+// Code snippets are only available for the latest major version. Current major version is $v0.*
+
+// Dependencies
 import (
 	  "context"
 	  msgraphsdk "github.com/microsoftgraph/msgraph-beta-sdk-go"
-	  graphmodels "github.com/microsoftgraph/msgraph-beta-sdk-go/models//search"
+	  graphmodelssearch "github.com/microsoftgraph/msgraph-beta-sdk-go/models/search"
 	  //other-imports
 )
 
-graphClient := msgraphsdk.NewGraphServiceClientWithCredentials(cred, scopes)
-
-
-requestBody := graphmodels.NewAcronym()
+requestBody := graphmodelssearch.NewAcronym()
 description := "A deep neural network is a neural network with a certain level of complexity, a neural network with more than two layers."
 requestBody.SetDescription(&description) 
 
-result, err := graphClient.Search().Acronyms().ByAcronymId("acronym-id").Patch(context.Background(), requestBody, nil)
+// To initialize your graphClient, see https://learn.microsoft.com/en-us/graph/sdks/create-client?from=snippets&tabs=go
+acronyms, err := graphClient.Search().Acronyms().ByAcronymId("acronym-id").Patch(context.Background(), requestBody, nil)
 
 
 ```

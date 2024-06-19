@@ -4,7 +4,7 @@ description: "Describes a function that can be used in an attribute mapping to t
 ms.localizationpriority: medium
 doc_type: resourcePageType
 author: "ArvindHarinder1"
-ms.prod: "applications"
+ms.subservice: "entra-applications"
 ---
 
 # attributeMappingFunctionSchema resource type
@@ -17,9 +17,9 @@ Describes a function that can be used in an [attribute mapping](synchronization-
 
 ## Methods
 
-| Method		   | Return Type	|Description|
+| Method           | Return Type    |Description|
 |:---------------|:--------|:----------|
-|[List](../api/synchronization-synchronizationschema-functions.md) | [attributeMappingFunctionSchema](../resources/synchronization-attributemappingfunctionschema.md) collection|List supported attribute mapping functions.|
+|[Get schema functions](../api/synchronization-synchronizationschema-functions.md) | [attributeMappingFunctionSchema](../resources/synchronization-attributemappingfunctionschema.md) collection|List supported attribute mapping functions.|
 
 ## Properties
 
@@ -43,9 +43,12 @@ The following is a JSON representation of the resource.
 ```json
 {
   "id": "String (identifier)",
-  "parameters": [{"@odata.type": "microsoft.graph.attributeMappingParameterSchema"}]
+  "parameters": [
+    {
+      "@odata.type": "microsoft.graph.attributeMappingParameterSchema"
+    }
+  ]
 }
-
 ```
 
 <!-- uuid: 8fcb5dbc-d5aa-4681-8e31-b001d5168d79

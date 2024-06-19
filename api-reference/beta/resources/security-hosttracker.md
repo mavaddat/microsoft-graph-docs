@@ -3,7 +3,7 @@ title: "hostTracker resource type"
 description: "Represents a unique code or value found within web pages and often used to track user interaction."
 author: "joerattazzi-microsoft"
 ms.localizationpriority: medium
-ms.prod: "security"
+ms.subservice: "security"
 doc_type: resourcePageType
 ---
 
@@ -12,6 +12,8 @@ doc_type: resourcePageType
 Namespace: microsoft.graph.security
 
 [!INCLUDE [beta-disclaimer](../../includes/beta-disclaimer.md)]
+
+[!INCLUDE [threatintelligence-api-disclaimer](../../includes/threatintelligence-api-disclaimer.md)]
 
 Represents a unique code or value found within web pages and often used to track user interaction. These codes can be used to correlate a disparate group of websites to a central entity. Often, actors copy the source code of a victim’s website they want to impersonate for a phishing campaign. Seldomly, actors take the time to remove these IDs. Actors might also deploy tracker IDs to see how successful their cyberattack campaigns are. This is similar to marketers using SEO IDs, such as a Google Analytics Tracker ID, to track the success of their marketing campaign.
 
@@ -23,7 +25,7 @@ Inherits from [artifact](../resources/security-artifact.md).
 
 |Method|Return type|Description|
 |:---|:---|:---|
-|[Get hostTracker](../api/security-hosttracker-get.md)|[microsoft.graph.security.hostTracker](../resources/security-hosttracker.md)|Read the properties and relationships of a [microsoft.graph.security.hostTracker](../resources/security-hosttracker.md) object.|
+|[Get](../api/security-hosttracker-get.md)|[microsoft.graph.security.hostTracker](../resources/security-hosttracker.md)|Read the properties and relationships of a [microsoft.graph.security.hostTracker](../resources/security-hosttracker.md) object.|
 
 ## Properties
 

@@ -5,18 +5,16 @@ description: "Automatically generated file. DO NOT MODIFY"
 ```php
 
 <?php
-
-// THIS SNIPPET IS A PREVIEW FOR THE KIOTA BASED SDK. NON-PRODUCTION USE ONLY
-$graphServiceClient = new GraphServiceClient($requestAdapter);
-
-$requestBody = new IndustryDataConnector();
-$requestBody->set@odatatype('microsoft.graph.industryData.azureDataLakeConnector');
-
-$requestBody->setDisplayName('API Monitor 60201009');
+use Microsoft\Graph\Beta\GraphServiceClient;
+use Microsoft\Graph\Beta\Generated\Models\IndustryData\AzureDataLakeConnector;
 
 
+$graphServiceClient = new GraphServiceClient($tokenRequestContext, $scopes);
 
-$result = $graphServiceClient->external()->industryData()->dataConnectors()->byDataConnectorId('industryDataConnector-id')->patch($requestBody);
+$requestBody = new AzureDataLakeConnector();
+$requestBody->setOdataType('microsoft.graph.industryData.azureDataLakeConnector');
+$requestBody->setDisplayName('CSV files from SIS');
 
+$result = $graphServiceClient->external()->industryData()->dataConnectors()->byIndustryDataConnectorId('industryDataConnector-id')->patch($requestBody)->wait();
 
 ```

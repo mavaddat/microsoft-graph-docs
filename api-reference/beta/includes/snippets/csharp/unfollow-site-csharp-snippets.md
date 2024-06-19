@@ -6,28 +6,27 @@ description: "Automatically generated file. DO NOT MODIFY"
 
 // Code snippets are only available for the latest version. Current version is 5.x
 
-var graphClient = new GraphServiceClient(requestAdapter);
+// Dependencies
+using Microsoft.Graph.Beta.Users.Item.FollowedSites.Remove;
+using Microsoft.Graph.Beta.Models;
 
-var requestBody = new Microsoft.Graph.Beta.Users.Item.FollowedSites.Item.FollowedSite
+var requestBody = new RemovePostRequestBody
 {
-	AdditionalData = new Dictionary<string, object>
+	Value = new List<Site>
 	{
+		new Site
 		{
-			"value" , new List<>
-			{
-				new 
-				{
-					Id = "contoso.sharepoint.com,da60e844-ba1d-49bc-b4d4-d5e36bae9019,712a596e-90a1-49e3-9b48-bfa80bee8740",
-				},
-				new 
-				{
-					Id = "contoso.sharepoint.com,da60e844-ba1d-49bc-b4d4-d5e36bae9019,0271110f-634f-4300-a841-3a8a2e851851",
-				},
-			}
+			Id = "contoso.sharepoint.com,da60e844-ba1d-49bc-b4d4-d5e36bae9019,712a596e-90a1-49e3-9b48-bfa80bee8740",
+		},
+		new Site
+		{
+			Id = "contoso.sharepoint.com,da60e844-ba1d-49bc-b4d4-d5e36bae9019,0271110f-634f-4300-a841-3a8a2e851851",
 		},
 	},
 };
-await graphClient.Users["{user-id}"].FollowedSites["{site-id}"].PostAsync(requestBody);
+
+// To initialize your graphClient, see https://learn.microsoft.com/en-us/graph/sdks/create-client?from=snippets&tabs=csharp
+var result = await graphClient.Users["{user-id}"].FollowedSites.Remove.PostAsRemovePostResponseAsync(requestBody);
 
 
 ```

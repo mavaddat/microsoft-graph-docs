@@ -5,18 +5,19 @@ description: "Automatically generated file. DO NOT MODIFY"
 ```php
 
 <?php
+use Microsoft\Graph\Beta\GraphServiceClient;
+use Microsoft\Graph\Beta\Generated\DirectoryObjects\Delta\DeltaRequestBuilderGetRequestConfiguration;
 
-// THIS SNIPPET IS A PREVIEW FOR THE KIOTA BASED SDK. NON-PRODUCTION USE ONLY
-$graphServiceClient = new GraphServiceClient($requestAdapter);
+
+$graphServiceClient = new GraphServiceClient($tokenRequestContext, $scopes);
 
 $requestConfiguration = new DeltaRequestBuilderGetRequestConfiguration();
 $queryParameters = DeltaRequestBuilderGetRequestConfiguration::createQueryParameters();
-$queryParameters->filter = "isof or isof";
+$queryParameters->filter = "isof('microsoft.graph.user') or isof('microsoft.graph.group')";
 $queryParameters->select = ["microsoft.graph.user/surname","microsoft.graph.group/displayName"];
 $requestConfiguration->queryParameters = $queryParameters;
 
 
-$result = $graphServiceClient->directoryObjects()->delta()->get($requestConfiguration);
-
+$result = $graphServiceClient->directoryObjects()->delta()->get($requestConfiguration)->wait();
 
 ```

@@ -5,26 +5,27 @@ description: "Automatically generated file. DO NOT MODIFY"
 ```go
 
 
+// Code snippets are only available for the latest major version. Current major version is $v0.*
+
+// Dependencies
 import (
 	  "context"
 	  msgraphsdk "github.com/microsoftgraph/msgraph-beta-sdk-go"
-	  graphmodels "github.com/microsoftgraph/msgraph-beta-sdk-go/IdentityGovernance/EntitlementManagement/AccessPackages/Item/GetApplicablePolicyRequirements"
+	  graphidentitygovernance "github.com/microsoftgraph/msgraph-beta-sdk-go/identitygovernance"
 	  //other-imports
 )
 
-graphClient := msgraphsdk.NewGraphServiceClientWithCredentials(cred, scopes)
-
-
-requestBody := graphmodels.NewGetApplicablePolicyRequirementsPostRequestBody()
+requestBody := graphidentitygovernance.NewGetApplicablePolicyRequirementsPostRequestBody()
 additionalData := map[string]interface{}{
-subject := graphmodels.New()
+subject := graph.New()
 objectId := "5acd375c-8acb-45de-a958-fa0dd89259ad"
 subject.SetObjectId(&objectId) 
 	requestBody.SetSubject(subject)
 }
 requestBody.SetAdditionalData(additionalData)
 
-result, err := graphClient.IdentityGovernance().EntitlementManagement().AccessPackages().ByAccessPackageId("accessPackage-id").GetApplicablePolicyRequirements().Post(context.Background(), requestBody, nil)
+// To initialize your graphClient, see https://learn.microsoft.com/en-us/graph/sdks/create-client?from=snippets&tabs=go
+getApplicablePolicyRequirements, err := graphClient.IdentityGovernance().EntitlementManagement().AccessPackages().ByAccessPackageId("accessPackage-id").GetApplicablePolicyRequirements().PostAsGetApplicablePolicyRequirementsPostResponse(context.Background(), requestBody, nil)
 
 
 ```

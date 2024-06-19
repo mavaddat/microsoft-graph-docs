@@ -6,11 +6,10 @@ description: "Automatically generated file. DO NOT MODIFY"
 
 // Code snippets are only available for the latest version. Current version is 5.x
 
-var graphClient = new GraphServiceClient(requestAdapter);
-
-await graphClient.AppCatalogs.TeamsApps.PostAsync((requestConfiguration) =>
+// To initialize your graphClient, see https://learn.microsoft.com/en-us/graph/sdks/create-client?from=snippets&tabs=csharp
+await graphClient.AppCatalogs.TeamsApps.PostAsTeamsAppsPostResponseAsync((requestConfiguration) =>
 {
-	requestConfiguration.QueryParameters.Requiresreview = true;
+	requestConfiguration.QueryParameters.RequiresReview = "true";
 });
 
 

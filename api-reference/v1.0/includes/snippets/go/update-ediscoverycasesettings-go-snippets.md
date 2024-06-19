@@ -5,25 +5,26 @@ description: "Automatically generated file. DO NOT MODIFY"
 ```go
 
 
+// Code snippets are only available for the latest major version. Current major version is $v1.*
+
+// Dependencies
 import (
 	  "context"
 	  msgraphsdk "github.com/microsoftgraph/msgraph-sdk-go"
-	  graphmodels "github.com/microsoftgraph/msgraph-sdk-go/models//security"
+	  graphmodelssecurity "github.com/microsoftgraph/msgraph-sdk-go/models/security"
 	  //other-imports
 )
 
-graphClient := msgraphsdk.NewGraphServiceClientWithCredentials(cred, scopes)
-
-
-requestBody := graphmodels.NewEdiscoveryCaseSettings()
-redundancyDetection := graphmodels.NewRedundancyDetectionSettings()
+requestBody := graphmodelssecurity.NewEdiscoveryCaseSettings()
+redundancyDetection := graphmodelssecurity.NewRedundancyDetectionSettings()
 requestBody.SetRedundancyDetection(redundancyDetection)
-topicModeling := graphmodels.NewTopicModelingSettings()
+topicModeling := graphmodelssecurity.NewTopicModelingSettings()
 requestBody.SetTopicModeling(topicModeling)
-ocr := graphmodels.NewOcrSettings()
+ocr := graphmodelssecurity.NewOcrSettings()
 requestBody.SetOcr(ocr)
 
-result, err := graphClient.Security().Cases().EdiscoveryCases().ByEdiscoveryCaseId("ediscoveryCase-id").Settings().Patch(context.Background(), requestBody, nil)
+// To initialize your graphClient, see https://learn.microsoft.com/en-us/graph/sdks/create-client?from=snippets&tabs=go
+settings, err := graphClient.Security().Cases().EdiscoveryCases().ByEdiscoveryCaseId("ediscoveryCase-id").Settings().Patch(context.Background(), requestBody, nil)
 
 
 ```

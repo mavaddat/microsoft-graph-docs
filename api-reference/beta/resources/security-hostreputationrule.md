@@ -3,7 +3,7 @@ title: "hostReputationRule resource type"
 description: "Represents a rule that is used (in combination with other rules) to determine the reputation of a hostname or IP address."
 author: "joerattazzi-microsoft"
 ms.localizationpriority: medium
-ms.prod: "security"
+ms.subservice: "security"
 doc_type: resourcePageType
 ---
 
@@ -12,6 +12,8 @@ doc_type: resourcePageType
 Namespace: microsoft.graph.security
 
 [!INCLUDE [beta-disclaimer](../../includes/beta-disclaimer.md)]
+
+[!INCLUDE [threatintelligence-api-disclaimer](../../includes/threatintelligence-api-disclaimer.md)]
 
 Represents a rule that is used (in combination with other rules) to determine the reputation of a [hostname](../resources/security-hostname.md) or [IP address](../resources/security-ipaddress.md). Each **hostReputationRule** only applies within the parent [hostReputation](../resources/security-hostreputation.md).
 

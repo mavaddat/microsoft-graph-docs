@@ -5,15 +5,16 @@ description: "Automatically generated file. DO NOT MODIFY"
 ```go
 
 
+// Code snippets are only available for the latest major version. Current major version is $v0.*
+
+// Dependencies
 import (
 	  "context"
+	  "time"
 	  msgraphsdk "github.com/microsoftgraph/msgraph-beta-sdk-go"
 	  graphmodels "github.com/microsoftgraph/msgraph-beta-sdk-go/models"
 	  //other-imports
 )
-
-graphClient := msgraphsdk.NewGraphServiceClientWithCredentials(cred, scopes)
-
 
 requestBody := graphmodels.NewLearningCourseActivity()
 completedDateTime := null
@@ -26,14 +27,13 @@ learningContentId := "57baf9dc-e020-11ec-9d64-0242ac120002"
 requestBody.SetLearningContentId(&learningContentId) 
 learnerUserId := "7ba2228a-e020-11ec-9d64-0242ac120002"
 requestBody.SetLearnerUserId(&learnerUserId) 
+startedDateTime , err := time.Parse(time.RFC3339, "2021-05-21T22:57:17+00:00")
+requestBody.SetStartedDateTime(&startedDateTime) 
 status := graphmodels.INPROGRESS_COURSESTATUS 
 requestBody.SetStatus(&status) 
-additionalData := map[string]interface{}{
-	"startedDateTime" : "2021-05-21T22:57:17+00:00", 
-}
-requestBody.SetAdditionalData(additionalData)
 
-result, err := graphClient.EmployeeExperience().LearningProviders().ByLearningProviderId("learningProvider-id").LearningCourseActivities().Post(context.Background(), requestBody, nil)
+// To initialize your graphClient, see https://learn.microsoft.com/en-us/graph/sdks/create-client?from=snippets&tabs=go
+learningCourseActivities, err := graphClient.EmployeeExperience().LearningProviders().ByLearningProviderId("learningProvider-id").LearningCourseActivities().Post(context.Background(), requestBody, nil)
 
 
 ```

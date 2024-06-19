@@ -2,7 +2,7 @@
 title: "Enum values"
 description: "Microsoft Graph enumeration values."
 ms.localizationpriority: medium
-ms.prod: "non-product-specific"
+ms.subservice: "non-product-specific"
 author: "MSGraphDocsvTeam"
 doc_type: enumPageType
 ---
@@ -11,12 +11,37 @@ doc_type: enumPageType
 
 Namespace: microsoft.graph
 
-### binaryOperator values 
+### fileStorageContainerStatus values
+
+| Member             |
+|:-------------------|
+| inactive           |
+| active             |
+| unknownfuturevalue |
+
+### binaryOperator values
 
 |Member|
 |:---|
 |or|
 |and|
+
+### entityType values
+|Member|
+|:---|
+|event|
+|message|
+|driveItem|
+|externalItem|
+|site|
+|list|
+|listItem|
+|drive|
+|unknownFutureValue|
+|chatMessage|
+|person|
+|acronym|
+|bookmark|
 
 ### conditionalAccessExternalTenantsMembershipKind values
 
@@ -39,6 +64,15 @@ Namespace: microsoft.graph
 | serviceProvider        |
 | unknownFutureValue     |
 
+### migrationStatus values 
+
+|Member|
+|:---|
+|ready|
+|needsReview|
+|additionalStepsRequired|
+|unknownFutureValue|
+
 ### appCredentialRestrictionType values
 
 | Member               |
@@ -56,6 +90,22 @@ Namespace: microsoft.graph
 | asymmetricKeyLifetime |
 | unknownFutureValue    |
 
+### assignmentType values
+
+| Member              |
+| :-------------------|
+| required            |
+| recommeded          |
+| unknownFutureValue  |
+| peerRecommeded          |
+
+### courseStatus values
+
+| Member             |
+| :----------------- |
+| notStarted         |
+| inProgress         |
+| completed          |
 ### userPurpose values
 | Member             |
 | :----------------- |
@@ -106,6 +156,50 @@ Namespace: microsoft.graph
 | user   |
 | group  |
 
+### multiTenantOrganizationMemberProcessingStatus values
+
+|Member|
+|:---|
+|notStarted|
+|running|
+|succeeded|
+|failed|
+|unknownFutureValue|
+
+### multiTenantOrganizationMemberRole values
+
+|Member|
+|:---|
+|owner|
+|member|
+|unknownFutureValue|
+
+### multiTenantOrganizationMemberState values
+
+|Member|
+|:---|
+|pending|
+|active|
+|removed|
+|unknownFutureValue|
+
+### multiTenantOrganizationState values
+
+|Member|
+|:---|
+|active|
+|inactive|
+|unknownFutureValue|
+
+### templateApplicationLevel values
+
+|Member|
+|:---|
+|none|
+|newPartners|
+|existingPartners|
+|unknownFutureValue|
+
 ### federatedIdpMfaBehavior values
 | Member                        |
 | :---------------------------- |
@@ -122,7 +216,7 @@ Namespace: microsoft.graph
 | disabled                               |
 | unknownFutureValue                     |
 
-### expirationPatternType values 
+### expirationPatternType values
 
 | Member        |
 | :------------ |
@@ -131,7 +225,7 @@ Namespace: microsoft.graph
 | afterDateTime |
 | afterDuration |
 
-### recurrencePatternType values 
+### recurrencePatternType values
 
 | Member          |
 | :-------------- |
@@ -142,44 +236,21 @@ Namespace: microsoft.graph
 | absoluteYearly  |
 | relativeYearly  |
 
-### roleAssignmentScheduleFilterByCurrentUserOptions values 
+### assignmentScheduleFilterByCurrentUserOptions values
 
 | Member             |
 | :----------------- |
 | principal          |
 | unknownFutureValue |
 
-### roleAssignmentScheduleInstanceFilterByCurrentUserOptions values 
+### assignmentScheduleInstanceFilterByCurrentUserOptions values
 
 | Member             |
 | :----------------- |
 | principal          |
 | unknownFutureValue |
 
-### roleAssignmentScheduleRequestFilterByCurrentUserOptions values 
-
-| Member             |
-| :----------------- |
-| principal          |
-| createdBy          |
-| approver           |
-| unknownFutureValue |
-
-### roleEligibilityScheduleFilterByCurrentUserOptions values 
-
-| Member             |
-| :----------------- |
-| principal          |
-| unknownFutureValue |
-
-### roleEligibilityScheduleInstanceFilterByCurrentUserOptions values 
-
-| Member             |
-| :----------------- |
-| principal          |
-| unknownFutureValue |
-
-### roleEligibilityScheduleRequestFilterByCurrentUserOptions values 
+### assignmentScheduleRequestFilterByCurrentUserOptions values
 
 | Member             |
 | :----------------- |
@@ -188,21 +259,56 @@ Namespace: microsoft.graph
 | approver           |
 | unknownFutureValue |
 
-### unifiedRoleManagementPolicyRuleTargetOperations values 
+
+### eligibilityScheduleFilterByCurrentUserOptions values
 
 | Member             |
 | :----------------- |
-| all                |
-| activate           |
-| deactivate         |
-| assign             |
-| update             |
-| remove             |
-| extend             |
-| renew              |
+| principal          |
 | unknownFutureValue |
 
-### unifiedRoleScheduleRequestActions values 
+### eligibilityScheduleInstanceFilterByCurrentUserOptions values
+
+| Member             |
+| :----------------- |
+| principal          |
+| unknownFutureValue |
+
+### eligibilityScheduleRequestFilterByCurrentUserOptions values
+
+| Member             |
+| :----------------- |
+| principal          |
+| createdBy          |
+| approver           |
+| unknownFutureValue |
+
+
+### privilegedAccessGroupAssignmentType values
+
+| Member             |
+| :----------------- |
+| assigned           |
+| activated          |
+| unknownFutureValue |
+
+### privilegedAccessGroupMemberType values
+
+| Member             |
+| :----------------- |
+| direct             |
+| group              |
+| unknownFutureValue |
+
+### privilegedAccessGroupRelationships values
+
+| Member             |
+| :----------------- |
+| owner              |
+| member             |
+| unknownFutureValue |
+
+### scheduleRequestActions values
 
 | Member             |
 | :----------------- |
@@ -217,7 +323,90 @@ Namespace: microsoft.graph
 | selfRenew          |
 | unknownFutureValue |
 
-### approvalFilterByCurrentUserOptions values 
+### roleAssignmentScheduleFilterByCurrentUserOptions values
+
+| Member             |
+| :----------------- |
+| principal          |
+| unknownFutureValue |
+
+### roleAssignmentScheduleInstanceFilterByCurrentUserOptions values
+
+| Member             |
+| :----------------- |
+| principal          |
+| unknownFutureValue |
+
+### roleAssignmentScheduleRequestFilterByCurrentUserOptions values
+
+| Member             |
+| :----------------- |
+| principal          |
+| createdBy          |
+| approver           |
+| unknownFutureValue |
+
+### roleEligibilityScheduleFilterByCurrentUserOptions values
+
+| Member             |
+| :----------------- |
+| principal          |
+| unknownFutureValue |
+
+### roleEligibilityScheduleInstanceFilterByCurrentUserOptions values
+
+| Member             |
+| :----------------- |
+| principal          |
+| unknownFutureValue |
+
+### roleEligibilityScheduleRequestFilterByCurrentUserOptions values
+
+| Member             |
+| :----------------- |
+| principal          |
+| createdBy          |
+| approver           |
+| unknownFutureValue |
+
+### unifiedRoleManagementPolicyRuleTargetOperations values
+
+| Member             |
+| :----------------- |
+| all                |
+| activate           |
+| deactivate         |
+| assign             |
+| update             |
+| remove             |
+| extend             |
+| renew              |
+| unknownFutureValue |
+
+### userSignInRecommendationScope values
+
+| Member             |
+| :----------------- |
+| tenant             |
+| application        |
+| unknownFutureValue |
+
+### unifiedRoleScheduleRequestActions values
+
+| Member             |
+| :----------------- |
+| adminAssign        |
+| adminUpdate        |
+| adminRemove        |
+| selfActivate       |
+| selfDeactivate     |
+| adminExtend        |
+| adminRenew         |
+| selfExtend         |
+| selfRenew          |
+| unknownFutureValue |
+
+### approvalFilterByCurrentUserOptions values
 
 | Member             |
 | :----------------- |
@@ -250,7 +439,7 @@ Namespace: microsoft.graph
 | allExternalUsers                        |
 | unknownFutureValue                      |
 
-### approvalFilterByCurrentUserOptions values 
+### approvalFilterByCurrentUserOptions values
 
 | Member             |
 | :----------------- |
@@ -368,19 +557,42 @@ Namespace: microsoft.graph
 | configured |
 | proposed   |
 
-### accessReviewInstanceDecisionItemFilterByCurrentUserOptions values 
+### accessReviewInstanceDecisionItemFilterByCurrentUserOptions values
 
 | Member             |
 | :----------------- |
 | reviewer           |
 | unknownFutureValue |
 
-### accessReviewStageFilterByCurrentUserOptions values 
+### accessReviewStageFilterByCurrentUserOptions values
 
 | Member             |
 | :----------------- |
 | reviewer           |
 | unknownFutureValue |
+
+### accessPackageCustomExtensionStage values
+
+|Member|
+|:---|
+|assignmentRequestCreated|
+|assignmentRequestApproved|
+|assignmentRequestGranted|
+|assignmentRequestRemoved|
+|assignmentFourteenDaysBeforeExpiration|
+|assignmentOneDayBeforeExpiration|
+|unknownFutureValue|
+
+### customExtensionCalloutInstanceStatus values
+
+|Member|
+|:---|
+|calloutSent|
+|callbackReceived|
+|calloutFailed|
+|callbackTimedOut|
+|waitingForCallback|
+|unknownFutureValue|
 
 ### volumeType values
 
@@ -420,7 +632,7 @@ Namespace: microsoft.graph
 | clientIpAddress     |
 | authenticatorAppGps |
 
-### consentRequestFilterByCurrentUserOptions values 
+### consentRequestFilterByCurrentUserOptions values
 
 | Member             |
 | :----------------- |
@@ -453,6 +665,13 @@ Namespace: microsoft.graph
 | none               |
 | assignIfOpen       |
 | unknownFutureValue |
+
+### educationModuleStatus values
+
+| Member             |
+| :----------------- |
+| draft              |
+| published          |
 
 ### fido2RestrictionEnforcementType values
 
@@ -617,7 +836,7 @@ Namespace: microsoft.graph
 | Shared           |
 | IoT              |
 
-### appliedConditionalAccessPolicyResult values 
+### appliedConditionalAccessPolicyResult values
 
 | Member             |
 | :----------------- |
@@ -628,7 +847,7 @@ Namespace: microsoft.graph
 | unknown            |
 | unknownFutureValue |
 
-### groupType values 
+### groupType values
 
 | Member             |
 | :----------------- |
@@ -752,7 +971,7 @@ Namespace: microsoft.graph
 | presenter          |
 | unknownFutureValue |
 
-### modality values 
+### modality values
 
 | Member                  |
 | :---------------------- |
@@ -762,6 +981,16 @@ Namespace: microsoft.graph
 | data                    |
 | screenSharing           |
 | unknownFutureValue      |
+
+### endpointType values
+
+| Member                    |
+| :------------------------ |
+| default                   |
+| voicemail                 |
+| skypeForBusiness          |
+| skypeForBusinessVoipPhone |
+| unknownFutureValue        |
 
 ### callDirection values
 
@@ -889,6 +1118,16 @@ Namespace: microsoft.graph
 | trafficCone        |
 | pin                |
 | sunny              |
+| unknownFutureValue |
+
+### windowsSettingType values 
+
+Possible types of Windows settings.
+
+| Member             |
+| :----------------- |
+| roaming            |
+| backup             |
 | unknownFutureValue |
 
 ### workforceIntegrationEncryptionProtocol values
@@ -1517,6 +1756,9 @@ Possible values for user account types (group membership), per Windows definitio
 | adminConfirmedServicePrincipalCompromised |
 | adminDismissedAllRiskForServicePrincipal  |
 | m365DAdminDismissedDetection              |
+| userChangedPasswordOnPremises             |
+| adminDismissedRiskForSignIn               |
+| adminConfirmedAccountSafe                 |
 
 ### riskEventTypes values
 
@@ -1629,7 +1871,7 @@ Possible values for user account types (group membership), per Windows definitio
 | Member  | Value | Description                       |
 | :------ | :---- | :-------------------------------- |
 | block   | 1     | The threat should be blocked.     |
-| unblock | 2     | The threat should not be blocked. |
+| unblock | 2     | The threat shouldn't be blocked. |
 
 ### threatCategory values
 
@@ -1717,7 +1959,7 @@ Possible values for user account types (group membership), per Windows definitio
 | :-------------------------------- | :-------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | None                              | 0         | User is not allowed to override the message. User is not allowed to report a message as false positive if policyTip is not provided. In all other scenarios, user can report a message as false positive.                                                             |
 | AllowFalsePositiveOverride        | 1         | User is not allowed to explicitly override the block unless this is combined with `AllowOverrideWithoutJustification` or `AllowOverrideWithJustification` flags. Reporting a false positive on the violation automatically overrides the block and sends the message. |
-| AllowOverrideWithoutJustification | 2         | User is allowed to override the block and send the message. Justification text is not required. Exclusive to `AllowOverrideWithJustification`.                                                                                                                        |
+| AllowOverrideWithoutJustification | 2         | User is allowed to override the block and send the message. Justification text isn't required. Exclusive to `AllowOverrideWithJustification`.                                                                                                                        |
 | AllowOverrideWithJustification    | 4         | User is allowed to override the block and send the message. Justification text is required. Exclusive to `AllowOverrideWithoutJustification`.                                                                                                                         |
 
 ### wellknownListName values
@@ -1766,6 +2008,8 @@ Possible values for user account types (group membership), per Windows definitio
 | Member
 |:-------
 | low
+| medium
+| high
 
 ### permissionType values
 
@@ -1775,7 +2019,7 @@ Possible values for user account types (group membership), per Windows definitio
 | delegated
 | delegatedUserConsentable
 
-### printColorMode values 
+### printColorMode values
 
 | Member             |
 | :----------------- |
@@ -1785,7 +2029,7 @@ Possible values for user account types (group membership), per Windows definitio
 | auto               |
 | unknownFutureValue |
 
-### printDuplexMode values 
+### printDuplexMode values
 
 | Member             |
 | :----------------- |
@@ -1794,7 +2038,7 @@ Possible values for user account types (group membership), per Windows definitio
 | oneSided           |
 | unknownFutureValue |
 
-### printerFeedOrientation values 
+### printerFeedOrientation values
 
 | Member             |
 | :----------------- |
@@ -1802,7 +2046,7 @@ Possible values for user account types (group membership), per Windows definitio
 | shortEdgeFirst     |
 | unknownFutureValue |
 
-### printFinishing values 
+### printFinishing values
 
 | Member             |
 | :----------------- |
@@ -1826,8 +2070,54 @@ Possible values for user account types (group membership), per Windows definitio
 | stapleDualRight    |
 | stapleDualBottom   |
 | unknownFutureValue |
+| stapleTripleLeft|
+| stapleTripleTop|
+| stapleTripleRight|
+| stapleTripleBottom|
+| bindLeft|
+| bindTop|
+| bindRight|
+| bindBottom|
+| foldAccordion|
+| foldDoubleGate|
+| foldGate|
+| foldHalf|
+| foldHalfZ|
+| foldLeftGate|
+| foldLetter|
+| foldParallel|
+| foldPoster|
+| foldRightGate|
+| foldZ|
+| foldEngineeringZ|
+| punchTopLeft|
+| punchBottomLeft|
+| punchTopRight|
+| punchBottomRight|
+| punchDualLeft|
+| punchDualTop|
+| punchDualRight|
+| punchDualBottom|
+| punchTripleLeft|
+| punchTripleTop|
+| punchTripleRight|
+| punchTripleBottom|
+| punchQuadLeft|
+| punchQuadTop|
+| punchQuadRight|
+| punchQuadBottom|
+| fold|
+| trim|
+| bale|
+| bookletMaker|
+| coat|
+| laminate|
+| trimAfterPages|
+| trimAfterDocuments|
+| trimAfterCopies|
+| trimAfterJob|
 
-### printMultipageLayout values 
+### printMultipageLayout values
 
 | Member                          |
 | :------------------------------ |
@@ -1841,7 +2131,7 @@ Possible values for user account types (group membership), per Windows definitio
 | clockwiseFromBottomRight        |
 | unknownFutureValue              |
 
-### printOrientation values 
+### printOrientation values
 
 | Member             |
 | :----------------- |
@@ -1851,7 +2141,7 @@ Possible values for user account types (group membership), per Windows definitio
 | reversePortrait    |
 | unknownFutureValue |
 
-### printQuality values 
+### printQuality values
 
 | Member             |
 | :----------------- |
@@ -1860,7 +2150,7 @@ Possible values for user account types (group membership), per Windows definitio
 | high               |
 | unknownFutureValue |
 
-### printScaling values 
+### printScaling values
 
 | Member             |
 | :----------------- |
@@ -1914,7 +2204,17 @@ Possible values for user account types (group membership), per Windows definitio
 | emailBox             |
 | checkboxMultiSelect  |
 
-### teamworkActivityTopicSource values 
+### authenticationAttributeCollectionInputType values
+
+|Member|
+|:---|
+|text|
+|radioSingleSelect|
+|checkboxMultiSelect|
+|boolean|
+|unknownFutureValue|
+
+### teamworkActivityTopicSource values
 
 | Member    |
 | :-------- |
@@ -1922,7 +2222,7 @@ Possible values for user account types (group membership), per Windows definitio
 | text      |
 
 
-### provisioningResult values 
+### provisioningResult values
 
 | Member             |
 | :----------------- |
@@ -1932,7 +2232,7 @@ Possible values for user account types (group membership), per Windows definitio
 | warning            |
 | unknownFutureValue |
 
-### provisioningStepType values 
+### provisioningStepType values
 
 | Member              |
 | :------------------ |
@@ -1944,7 +2244,7 @@ Possible values for user account types (group membership), per Windows definitio
 | export              |
 | unknownFutureValue  |
 
-### provisioningStatusErrorCategory values 
+### provisioningStatusErrorCategory values
 
 | Member             |
 | :----------------- |
@@ -1953,7 +2253,7 @@ Possible values for user account types (group membership), per Windows definitio
 | success            |
 | unknownFutureValue |
 
-### provisioningAction values 
+### provisioningAction values
 
 | Member             |
 | :----------------- |
@@ -1966,7 +2266,7 @@ Possible values for user account types (group membership), per Windows definitio
 | unknownFutureValue |
 
 
-### initiatorType values 
+### initiatorType values
 
 | Member             |
 | :----------------- |
@@ -1975,7 +2275,7 @@ Possible values for user account types (group membership), per Windows definitio
 | system             |
 | unknownFutureValue |
 
-### teamworkApplicationIdentityType values 
+### teamworkApplicationIdentityType values
 
 | Member             |
 | :----------------- |
@@ -1986,7 +2286,7 @@ Possible values for user account types (group membership), per Windows definitio
 | outgoingWebhook    |
 | unknownFutureValue |
 
-### teamworkConversationIdentityType values 
+### teamworkConversationIdentityType values
 
 | Member             |
 | :----------------- |
@@ -1995,7 +2295,7 @@ Possible values for user account types (group membership), per Windows definitio
 | chat               |
 | unknownFutureValue |
 
-### teamworkUserIdentityType values 
+### teamworkUserIdentityType values
 
 | Member                       |
 | :--------------------------- |
@@ -2009,7 +2309,7 @@ Possible values for user account types (group membership), per Windows definitio
 | unknownFutureValue           |
 | emailUser                    |
 
-### postType values 
+### postType values
 
 | Member             |
 | :----------------- |
@@ -2025,7 +2325,7 @@ Possible values for user account types (group membership), per Windows definitio
 | modification |
 | suggestion   |
 
-### serviceHealthClassificationType values 
+### serviceHealthClassificationType values
 
 | Member             |
 | :----------------- |
@@ -2033,7 +2333,7 @@ Possible values for user account types (group membership), per Windows definitio
 | incident           |
 | unknownFutureValue |
 
-### serviceHealthOrigin values 
+### serviceHealthOrigin values
 
 | Member             |
 | :----------------- |
@@ -2042,7 +2342,7 @@ Possible values for user account types (group membership), per Windows definitio
 | customer           |
 | unknownFutureValue |
 
-### featureTargetType values 
+### featureTargetType values
 
 | Member             |
 | :----------------- |
@@ -2051,7 +2351,7 @@ Possible values for user account types (group membership), per Windows definitio
 | role               |
 | unknownFutureValue |
 
-### serviceHealthStatus values 
+### serviceHealthStatus values
 
 | Member                      |
 | :-------------------------- |
@@ -2074,7 +2374,7 @@ Possible values for user account types (group membership), per Windows definitio
 | reported                    |
 | unknownFutureValue          |
 
-### serviceUpdateCategory values 
+### serviceUpdateCategory values
 
 | Member             |
 | :----------------- |
@@ -2083,7 +2383,7 @@ Possible values for user account types (group membership), per Windows definitio
 | stayInformed       |
 | unknownFutureValue |
 
-### serviceUpdateSeverity values 
+### serviceUpdateSeverity values
 
 | Member             |
 | :----------------- |
@@ -2092,7 +2392,7 @@ Possible values for user account types (group membership), per Windows definitio
 | critical           |
 | unknownFutureValue |
 
-### subjectRightsRequestStage values 
+### subjectRightsRequestStage values
 
 | Member             |
 | :----------------- |
@@ -2102,8 +2402,9 @@ Possible values for user account types (group membership), per Windows definitio
 | contentDeletion    |
 | caseResolved       |
 | unknownFutureValue |
+| approval           |
 
-### subjectRightsRequestStageStatus values 
+### subjectRightsRequestStageStatus values
 
 | Member             |
 | :----------------- |
@@ -2113,7 +2414,7 @@ Possible values for user account types (group membership), per Windows definitio
 | failed             |
 | unknownFutureValue |
 
-### subjectRightsRequestStatus values 
+### subjectRightsRequestStatus values
 
 | Member             |
 | :----------------- |
@@ -2121,7 +2422,7 @@ Possible values for user account types (group membership), per Windows definitio
 | closed             |
 | unknownFutureValue |
 
-### subjectRightsRequestType values 
+### subjectRightsRequestType values
 
 | Member             |
 | :----------------- |
@@ -2131,7 +2432,7 @@ Possible values for user account types (group membership), per Windows definitio
 | tagForAction       |
 | unknownFutureValue |
 
-### dataSubjectType values 
+### dataSubjectType values
 
 | Member              |
 | :------------------ |
@@ -2145,7 +2446,7 @@ Possible values for user account types (group membership), per Windows definitio
 | other               |
 | unknownFutureValue  |
 
-### advancedConfigState values 
+### advancedConfigState values
 
 | Member             |
 | :----------------- |
@@ -2154,7 +2455,7 @@ Possible values for user account types (group membership), per Windows definitio
 | disabled           |
 | unknownFutureValue |
 
-### callRecordingStatus values 
+### callRecordingStatus values
 
 | Member             |
 | :----------------- |
@@ -2163,6 +2464,129 @@ Possible values for user account types (group membership), per Windows definitio
 | initial            |
 | chunkFinished      |
 | unknownFutureValue |
+
+### endUserNotificationPreference values
+
+|Member|
+|:---|
+|unknown|
+|microsoft|
+|custom|
+|unknownFutureValue|
+
+### endUserNotificationSettingType values
+
+|Member|
+|:---|
+|unknown|
+|noTraining|
+|trainingSelected|
+|noNotification|
+|unknownFutureValue|
+
+### endUserNotificationType values
+
+|Member|
+|:---|
+|unknown|
+|positiveReinforcement|
+|noTraining|
+|trainingAssignment|
+|trainingReminder|
+|unknownFutureValue|
+
+### notificationDeliveryFrequency values
+
+|Member|
+|:---|
+|unknown|
+|weekly|
+|biWeekly|
+|unknownFutureValue|
+
+### notificationDeliveryPreference values
+
+|Member|
+|:---|
+|unknown|
+|deliverImmedietly|
+|deliverAfterCampaignEnd|
+|unknownFutureValue|
+
+### oAuthAppScope values
+
+|Member|
+|:---|
+|unknown|
+|readCalendar|
+|readContact|
+|readMail|
+|readAllChat|
+|readAllFile|
+|readAndWriteMail|
+|sendMail|
+|unknownFutureValue|
+
+### targettedUserType values
+
+|Member|
+|:---|
+|unknown|
+|clicked|
+|compromised|
+|allUsers|
+|unknownFutureValue|
+
+### trainingAssignedTo values
+
+|Member|
+|:---|
+|none|
+|allUsers|
+|clickedPayload|
+|compromised|
+|reportedPhish|
+|readButNotClicked|
+|didNothing|
+|unknownFutureValue|
+
+### trainingAvailabilityStatus values
+
+|Member|
+|:---|
+|unknown|
+|notAvailable|
+|available|
+|archive|
+|delete|
+|unknownFutureValue|
+
+### trainingCompletionDuration values
+
+| Member             |
+| :------------------|
+| week               |
+| fortnite           |
+| month              |
+| unknownFutureValue |
+
+### trainingSettingType values
+
+|Member|
+|:---|
+|microsoftCustom|
+|microsoftManaged|
+|noTraining|
+|custom|
+|unknownFutureValue|
+
+### trainingType values
+
+|Member|
+|:---|
+|unknown|
+|phishing|
+|unknownFutureValue|
 
 ### payloadDeliveryPlatform values
 
@@ -2185,7 +2609,7 @@ Possible values for user account types (group membership), per Windows definitio
 | overdue            |
 | unknownFutureValue |
 
-### teamworkCallEventType values 
+### teamworkCallEventType values
 
 | Member             |
 | :----------------- |
@@ -2194,7 +2618,7 @@ Possible values for user account types (group membership), per Windows definitio
 | screenShare        |
 | unknownFutureValue |
 
-### bookingReminderRecipients values 
+### bookingReminderRecipients values
 
 | Member             |
 | :----------------- |
@@ -2203,7 +2627,7 @@ Possible values for user account types (group membership), per Windows definitio
 | customer           |
 | unknownFutureValue |
 
-### bookingStaffRole values 
+### bookingStaffRole values
 
 | Member             |
 | :----------------- |
@@ -2215,7 +2639,7 @@ Possible values for user account types (group membership), per Windows definitio
 | scheduler          |
 | teamMember         |
 
-### answerInputType values 
+### answerInputType values
 
 | Member             |
 | :----------------- |
@@ -2258,14 +2682,14 @@ Possible values for user account types (group membership), per Windows definitio
 | notNotified        |
 | unknownFutureValue |
 
-### weakAlgorithms values 
+### weakAlgorithms values
 
 |Member|
 |:---|
 |rsaSha1|
 |unknownFutureValue|
 
-### authenticationProtocol values 
+### authenticationProtocol values
 
 | Member |
 | :----- |
@@ -2282,7 +2706,7 @@ Possible values for user account types (group membership), per Windows definitio
 | failed             |
 | unknownFutureValue |
 
-### delegatedAdminAccessAssignmentStatus values 
+### delegatedAdminAccessAssignmentStatus values
 
 | Member             |
 | :----------------- |
@@ -2293,29 +2717,31 @@ Possible values for user account types (group membership), per Windows definitio
 | error              |
 | unknownFutureValue |
 
-### delegatedAdminAccessContainerType values 
+### delegatedAdminAccessContainerType values
 
 | Member             |
 | :----------------- |
 | securityGroup      |
 | unknownFutureValue |
 
-### delegatedAdminRelationshipOperationType values 
+### delegatedAdminRelationshipOperationType values
 
 | Member                               |
 | :----------------------------------- |
 | delegatedAdminAccessAssignmentUpdate |
 | unknownFutureValue                   |
 
-### delegatedAdminRelationshipRequestAction values 
+### delegatedAdminRelationshipRequestAction values
 
 | Member             |
 | :----------------- |
 | lockForApproval    |
+| approve            |
 | terminate          |
 | unknownFutureValue |
+| reject             |
 
-### delegatedAdminRelationshipRequestStatus values 
+### delegatedAdminRelationshipRequestStatus values
 
 | Member             |
 | :----------------- |
@@ -2325,7 +2751,7 @@ Possible values for user account types (group membership), per Windows definitio
 | failed             |
 | unknownFutureValue |
 
-### delegatedAdminRelationshipStatus values 
+### delegatedAdminRelationshipStatus values
 
 | Member               |
 | :------------------- |
@@ -2349,7 +2775,7 @@ Possible values for user account types (group membership), per Windows definitio
 | enabledForCount      |
 | enabledForPercentage |
 
-### searchContent values 
+### searchContent values
 
 | Member             |
 | :----------------- |
@@ -2494,11 +2920,444 @@ Possible values for user account types (group membership), per Windows definitio
 |pending|
 |unknownFutureValue|
 
-### chatMessageActions values 
+### chatMessageActions values
 
 |Member|
 |:---|
 |reactionAdded|
 |reactionRemoved|
 |actionUndefined|
+|unknownFutureValue|
+
+### attributeDefinitionMetadata values
+
+|Member|
+|:---|
+|BaseAttributeName|
+|ComplexObjectDefinition|
+|IsContainer|
+|IsCustomerDefined|
+|IsDomainQualified|
+|LinkPropertyNames|
+|LinkTypeName|
+|MaximumLength|
+|ReferencedProperty|
+
+### attributeFlowBehavior values
+
+|Member|
+|:---|
+|FlowWhenChanged|
+|FlowAlways|
+
+### attributeFlowType values
+
+| Member            |
+| :---------------- |
+| Always            |
+| ObjectAddOnly     |
+| MultiValueAddOnly |
+| ValueAddOnly      |
+| AttributeAddOnly  |
+
+### attributeMappingSourceType values
+
+| Member    |
+| :-------- |
+| Attribute |
+| Constant  |
+| Function  |
+
+### directoryDefinitionDiscoverabilities values
+
+| Member              |
+| :------------------ |
+| None                |
+| AttributeNames      |
+| AttributeDataTypes  |
+| AttributeReadOnly   |
+| ReferenceAttributes |
+| UnknownFutureValue  |
+
+### attributeType values
+
+| Member    |
+| :-------- |
+| String    |
+| Integer   |
+| Reference |
+| Binary    |
+| Boolean   |
+| DateTime  |
+
+### mutability values
+
+| Member    |
+| :-------- |
+| ReadWrite |
+| ReadOnly  |
+| Immutable |
+| WriteOnly |
+
+### objectDefinitionMetadata values
+
+|Member|
+|:---|
+|PropertyNameAccountEnabled|
+|PropertyNameSoftDeleted|
+|IsSoftDeletionSupported|
+|IsSynchronizeAllSupported|
+|ConnectorDataStorageRequired|
+|Extensions|
+|BaseObjectName|
+
+### objectFlowTypes values
+
+|Member|
+|:---|
+|None|
+|Add|
+|Update|
+|Delete|
+
+### objectMappingMetadata values
+
+|Member|
+|:---|
+|EscrowBehavior|
+|DisableMonitoringForChanges|
+|OriginalJoiningProperty|
+|Disposition|
+|IsCustomerDefined|
+|ExcludeFromReporting|
+|Unsynchronized|
+
+### synchronizationMetadata values
+
+|Member|
+|:---|
+|GalleryApplicationIdentifier|
+|GalleryApplicationKey|
+|IsOAuthEnabled|
+|IsSynchronizationAgentAssignmentRequired|
+|IsSynchronizationAgentRequired|
+|IsSynchronizationInPreview|
+|OAuthSettings|
+|SynchronizationLearnMoreIbizaFwLink|
+|ConfigurationFields|
+
+### synchronizationSecret values
+
+| Member                          |
+| :------------------------------ |
+| None                            |
+| UserName                        |
+| Password                        |
+| SecretToken                     |
+| AppKey                          |
+| BaseAddress                     |
+| ClientIdentifier                |
+| ClientSecret                    |
+| SingleSignOnType                |
+| Sandbox                         |
+| Url                             |
+| Domain                          |
+| ConsumerKey                     |
+| ConsumerSecret                  |
+| TokenKey                        |
+| TokenExpiration                 |
+| Oauth2AccessToken               |
+| Oauth2AccessTokenCreationTime   |
+| Oauth2RefreshToken              |
+| SyncAll                         |
+| InstanceName                    |
+| Oauth2ClientId                  |
+| Oauth2ClientSecret              |
+| CompanyId                       |
+| UpdateKeyOnSoftDelete           |
+| SynchronizationSchedule         |
+| SystemOfRecord                  |
+| SandboxName                     |
+| EnforceDomain                   |
+| SyncNotificationSettings        |
+| SkipOutOfScopeDeletions         |
+| Oauth2AuthorizationCode         |
+| Oauth2RedirectUri               |
+| ApplicationTemplateIdentifier   |
+| Oauth2TokenExchangeUri          |
+| Oauth2AuthorizationUri          |
+| AuthenticationType              |
+| Server                          |
+| PerformInboundEntitlementGrants |
+| HardDeletesEnabled              |
+| SyncAgentCompatibilityKey       |
+| SyncAgentADContainer            |
+| ValidateDomain                  |
+| TestReferences                  |
+| ConnectionString                |
+
+### synchronizationStatusCode values
+
+| Member        |
+| :------------ |
+| NotConfigured |
+| NotRun        |
+| Active        |
+| Paused        |
+| Quarantine    |
+
+### synchronizationTaskExecutionResult values
+
+| Member           |
+| :--------------- |
+| Succeeded        |
+| Failed           |
+| EntryLevelErrors |
+
+### stagedFeatureName values
+
+| Member                         |
+|:-------------------------------|
+| passthroughAuthentication      |
+| seamlessSso                    |
+| passwordHashSync               |
+| emailAsAlternateId             |
+| unknownFutureValue             |
+| certificateBasedAuthentication |
+| multiFactorAuthentication      |
+
+### synchronizationJobRestartScope values
+
+|Member|
+|:---|
+|None|
+|ConnectorDataStore|
+|Escrows|
+|Watermark|
+|QuarantineState|
+|Full|
+|ForceDeletes|
+
+### quarantineReason values
+
+| Member                               |
+| :----------------------------------- |
+| EncounteredBaseEscrowThreshold       |
+| EncounteredTotalEscrowThreshold      |
+| EncounteredEscrowProportionThreshold |
+| EncounteredQuarantineException       |
+| Unknown                              |
+| QuarantinedOnDemand                  |
+| TooManyDeletes                       |
+| IngestionInterrupted                 |
+
+### synchronizationScheduleState values
+
+| Member   |
+| :------- |
+| Active   |
+| Disabled |
+| Paused   |
+
+### scopeOperatorMultiValuedComparisonType values
+
+|Member|
+|:---|
+|All|
+|Any|
+
+### scopeOperatorType values
+
+| Member |
+| :----- |
+| Binary |
+| Unary  |
+
+### entryExportStatus values
+
+|Member|
+|:---|
+|Noop|
+|Success|
+|RetryableError|
+|PermanentError|
+|Error|
+
+### entrySyncOperation values
+
+|Member|
+|:---|
+|None|
+|Add|
+|Delete|
+|Update|
+
+### scopeOperatorType values
+
+| Member |
+| :----- |
+| Default |
+| IgnoreLookupReferenceResolutionFailure  |
+
+### synchronizationDisposition values
+
+| Member   |
+| :------- |
+| Normal   |
+| Discard |
+| Escrow   |
+
+### outlierMemberType values
+
+|Member|
+|:---|
+|user|
+|unknownFutureValue|
+
+### outlierContainerType values
+
+|Member|
+|:---|
+|group|
+|unknownFutureValue|
+
+### authenticationMethodFeature values
+
+|Member|
+|:---|
+|ssprRegistered|
+|ssprEnabled|
+|ssprCapable|
+|passwordlessCapable|
+|mfaCapable|
+|unknownFutureValue|
+
+### featureType values
+
+|Member|
+|:---|
+|registration|
+|reset|
+|unknownFutureValue|
+
+### includedUserRoles values
+
+|Member|
+|:---|
+|all|
+|privilegedAdmin|
+|admin|
+|user|
+|unknownFutureValue|
+
+### includedUserTypes values
+
+|Member|
+|:---|
+|all|
+|member|
+|guest|
+|unknownFutureValue|
+
+### signInUserType values
+
+|Member|
+|:---|
+|member|
+|guest|
+|unknownFutureValue|
+
+### userDefaultAuthenticationMethod values
+
+|Member|
+|:---|
+|push|
+|oath|
+|voiceMobile|
+|voiceAlternateMobile|
+|voiceOffice|
+|sms|
+|none|
+|unknownFutureValue|
+
+### layoutTemplateType values
+
+| Member             |
+| :----------------- |
+| default            |
+| verticalSplit      |
+| unknownFutureValue |
+
+### meetingAudience values 
+
+|Member|
+|:---|
+|everyone|
+|organization|
+|unknownFutureValue|
+
+### virtualEventAttendeeRegistrationStatus values 
+
+|Member|
+|:---|
+|registered|
+|canceled|
+|waitlisted|
+|pendingApproval|
+|rejectedByOrganizer|
+|unknownFutureValue|
+
+### virtualEventStatus values 
+
+|Member|
+|:---|
+|draft|
+|published|
+|canceled|
+
+### socialIdentitySourceType values
+
+|Member|
+|:---|
+|facebook|
+|unknownFutureValue|
+
+### devicePlatformType values
+
+| Member             |
+|:-------------------|
+| android            |
+| androidForWork     |
+| iOS                |
+| macOS              |
+| windowsPhone81     |
+| windows81AndLater  |
+| windows10AndLater  |
+| androidWorkProfile |
+| unknown            |
+| androidAOSP        |
+| androidMobileApplicationManagement|
+| iOSMobileApplicationManagement|
+| unknownFutureValue|
+
+### educationAssignmentStatus values
+
+| Member             |
+| :----------------- |
+| draft              |
+| published          |
+| assigned           |
+| unknownFutureValue |
+| inactive           |
+
+### b2bIdentityProvidersType values
+
+|Member|
+|:-----|
+|azureActiveDirectory|
+|externalFederation|
+|socialIdentityProviders|
+|emailOneTimePasscode|
+|microsoftAccount|
+|defaultConfiguredIdp|
 |unknownFutureValue|

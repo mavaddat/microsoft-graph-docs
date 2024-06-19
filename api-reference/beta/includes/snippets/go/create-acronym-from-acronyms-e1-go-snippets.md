@@ -5,17 +5,17 @@ description: "Automatically generated file. DO NOT MODIFY"
 ```go
 
 
+// Code snippets are only available for the latest major version. Current major version is $v0.*
+
+// Dependencies
 import (
 	  "context"
 	  msgraphsdk "github.com/microsoftgraph/msgraph-beta-sdk-go"
-	  graphmodels "github.com/microsoftgraph/msgraph-beta-sdk-go/models//search"
+	  graphmodelssearch "github.com/microsoftgraph/msgraph-beta-sdk-go/models/search"
 	  //other-imports
 )
 
-graphClient := msgraphsdk.NewGraphServiceClientWithCredentials(cred, scopes)
-
-
-requestBody := graphmodels.NewAcronym()
+requestBody := graphmodelssearch.NewAcronym()
 displayName := "DNN"
 requestBody.SetDisplayName(&displayName) 
 standsFor := "Deep Neural Network"
@@ -27,7 +27,8 @@ requestBody.SetWebUrl(&webUrl)
 state := graphmodels.DRAFT_ANSWERSTATE 
 requestBody.SetState(&state) 
 
-result, err := graphClient.Search().Acronyms().Post(context.Background(), requestBody, nil)
+// To initialize your graphClient, see https://learn.microsoft.com/en-us/graph/sdks/create-client?from=snippets&tabs=go
+acronyms, err := graphClient.Search().Acronyms().Post(context.Background(), requestBody, nil)
 
 
 ```

@@ -5,17 +5,18 @@ description: "Automatically generated file. DO NOT MODIFY"
 ```go
 
 
+// Code snippets are only available for the latest major version. Current major version is $v1.*
+
+// Dependencies
 import (
 	  "context"
 	  msgraphsdk "github.com/microsoftgraph/msgraph-sdk-go"
-	  graphmodels "github.com/microsoftgraph/msgraph-sdk-go/Print/Printers/Item/Jobs/Item/Documents/Item/CreateUploadSession"
+	  graphprint "github.com/microsoftgraph/msgraph-sdk-go/print"
+	  graphmodels "github.com/microsoftgraph/msgraph-sdk-go/models"
 	  //other-imports
 )
 
-graphClient := msgraphsdk.NewGraphServiceClientWithCredentials(cred, scopes)
-
-
-requestBody := graphmodels.NewCreateUploadSessionPostRequestBody()
+requestBody := graphprint.NewCreateUploadSessionPostRequestBody()
 properties := graphmodels.NewPrintDocumentUploadProperties()
 documentName := "TestFile.pdf"
 properties.SetDocumentName(&documentName) 
@@ -25,7 +26,8 @@ size := int64(4533322)
 properties.SetSize(&size) 
 requestBody.SetProperties(properties)
 
-result, err := graphClient.Print().Printers().ByPrinterId("printer-id").Jobs().ByJobId("printJob-id").Documents().ByDocumentId("printDocument-id").CreateUploadSession().Post(context.Background(), requestBody, nil)
+// To initialize your graphClient, see https://learn.microsoft.com/en-us/graph/sdks/create-client?from=snippets&tabs=go
+createUploadSession, err := graphClient.Print().Printers().ByPrinterId("printer-id").Jobs().ByPrintJobId("printJob-id").Documents().ByPrintDocumentId("printDocument-id").CreateUploadSession().Post(context.Background(), requestBody, nil)
 
 
 ```

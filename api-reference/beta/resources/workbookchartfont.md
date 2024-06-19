@@ -3,8 +3,9 @@ title: "workbookChartFont resource type"
 description: "This object represents the font attributes (font name, font size, color, etc.) for a chart object."
 ms.localizationpriority: medium
 author: "lumine2008"
-ms.prod: "excel"
+ms.subservice: "excel"
 doc_type: resourcePageType
+toc.title: Chart font
 ---
 
 # workbookChartFont resource type
@@ -27,10 +28,10 @@ This object represents the font attributes (font name, font size, color, etc.) f
 | Property	   | Type	|Description|
 |:---------------|:--------|:----------|
 |bold|boolean|Represents the bold status of font.|
-|color|string|HTML color code representation of the text color. E.g. #FF0000 represents Red.|
+|color|string|HTML color code representation of the text color. for example #FF0000 represents Red.|
 |italic|boolean|Represents the italic status of the font.|
-|name|string|Font name (e.g. "Calibri")|
-|size|double|Size of the font (e.g. 11)|
+|name|string|Font name (for example "Calibri")|
+|size|double|Size of the font (for example 11)|
 |underline|string|Type of underline applied to the font. The possible values are: `None`, `Single`.|
 
 ## Relationships
@@ -39,7 +40,7 @@ None
 
 ## JSON representation
 
-Here is a JSON representation of the resource.
+The following JSON representation shows the resource type.
 
 <!--{
   "blockType": "resource",

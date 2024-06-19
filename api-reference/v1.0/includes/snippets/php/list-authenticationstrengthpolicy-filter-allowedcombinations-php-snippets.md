@@ -5,17 +5,18 @@ description: "Automatically generated file. DO NOT MODIFY"
 ```php
 
 <?php
+use Microsoft\Graph\GraphServiceClient;
+use Microsoft\Graph\Generated\Policies\AuthenticationStrengthPolicies\AuthenticationStrengthPoliciesRequestBuilderGetRequestConfiguration;
 
-// THIS SNIPPET IS A PREVIEW FOR THE KIOTA BASED SDK. NON-PRODUCTION USE ONLY
-$graphServiceClient = new GraphServiceClient($requestAdapter);
+
+$graphServiceClient = new GraphServiceClient($tokenRequestContext, $scopes);
 
 $requestConfiguration = new AuthenticationStrengthPoliciesRequestBuilderGetRequestConfiguration();
 $queryParameters = AuthenticationStrengthPoliciesRequestBuilderGetRequestConfiguration::createQueryParameters();
-$queryParameters->filter = "allowedCombinations/any";
+$queryParameters->filter = "allowedCombinations/any(x:x has 'sms, password')";
 $requestConfiguration->queryParameters = $queryParameters;
 
 
-$result = $graphServiceClient->policies()->authenticationStrengthPolicies()->get($requestConfiguration);
-
+$result = $graphServiceClient->policies()->authenticationStrengthPolicies()->get($requestConfiguration)->wait();
 
 ```

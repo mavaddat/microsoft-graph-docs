@@ -5,15 +5,15 @@ description: "Automatically generated file. DO NOT MODIFY"
 ```go
 
 
+// Code snippets are only available for the latest major version. Current major version is $v0.*
+
+// Dependencies
 import (
 	  "context"
 	  msgraphsdk "github.com/microsoftgraph/msgraph-beta-sdk-go"
 	  graphmodels "github.com/microsoftgraph/msgraph-beta-sdk-go/models"
 	  //other-imports
 )
-
-graphClient := msgraphsdk.NewGraphServiceClientWithCredentials(cred, scopes)
-
 
 requestBody := graphmodels.NewAccessPackageAssignmentPolicy()
 displayName := "policy-with-verified-id"
@@ -57,7 +57,6 @@ verifiableCredentialSettings := graphmodels.NewVerifiableCredentialSettings()
 verifiableCredentialType := graphmodels.NewVerifiableCredentialType()
 issuers := []string {
 	"did:ion:EiAlrenrtD3Lsw0GlbzS1O2YFdy3Xtu8yo35W<SNIP>...",
-
 }
 verifiableCredentialType.SetIssuers(issuers)
 credentialType := "VerifiedCredentialExpert"
@@ -65,12 +64,11 @@ verifiableCredentialType.SetCredentialType(&credentialType)
 
 credentialTypes := []graphmodels.VerifiableCredentialTypeable {
 	verifiableCredentialType,
-
 }
 verifiableCredentialSettings.SetCredentialTypes(credentialTypes)
 requestBody.SetVerifiableCredentialSettings(verifiableCredentialSettings)
 additionalData := map[string]interface{}{
-expiration := graphmodels.New()
+expiration := graph.New()
 type := "afterDuration"
 expiration.SetType(&type) 
 duration := "P365D"
@@ -79,7 +77,8 @@ expiration.SetDuration(&duration)
 }
 requestBody.SetAdditionalData(additionalData)
 
-result, err := graphClient.IdentityGovernance().EntitlementManagement().AccessPackageAssignmentPolicies().Post(context.Background(), requestBody, nil)
+// To initialize your graphClient, see https://learn.microsoft.com/en-us/graph/sdks/create-client?from=snippets&tabs=go
+accessPackageAssignmentPolicies, err := graphClient.IdentityGovernance().EntitlementManagement().AccessPackageAssignmentPolicies().Post(context.Background(), requestBody, nil)
 
 
 ```

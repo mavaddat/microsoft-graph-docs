@@ -5,17 +5,18 @@ description: "Automatically generated file. DO NOT MODIFY"
 ```go
 
 
+// Code snippets are only available for the latest major version. Current major version is $v0.*
+
+// Dependencies
 import (
 	  "context"
 	  msgraphsdk "github.com/microsoftgraph/msgraph-beta-sdk-go"
-	  graphmodels "github.com/microsoftgraph/msgraph-beta-sdk-go/Print/Printers/Item/Jobs/Item/Redirect"
+	  graphprint "github.com/microsoftgraph/msgraph-beta-sdk-go/print"
+	  graphmodels "github.com/microsoftgraph/msgraph-beta-sdk-go/models"
 	  //other-imports
 )
 
-graphClient := msgraphsdk.NewGraphServiceClientWithCredentials(cred, scopes)
-
-
-requestBody := graphmodels.NewRedirectPostRequestBody()
+requestBody := graphprint.NewRedirectPostRequestBody()
 destinationPrinterId := "9a3b3956-ce5b-4d06-a605-5b0bd3e9ddea"
 requestBody.SetDestinationPrinterId(&destinationPrinterId) 
 configuration := graphmodels.NewPrintJobConfiguration()
@@ -31,7 +32,6 @@ integerRange.SetEnd(&end)
 
 pageRanges := []graphmodels.IntegerRangeable {
 	integerRange,
-
 }
 configuration.SetPageRanges(pageRanges)
 quality := graphmodels.MEDIUM_PRINTQUALITY 
@@ -78,7 +78,8 @@ fitPdfToPage := false
 configuration.SetFitPdfToPage(&fitPdfToPage) 
 requestBody.SetConfiguration(configuration)
 
-result, err := graphClient.Print().Printers().ByPrinterId("printer-id").Jobs().ByJobId("printJob-id").Redirect().Post(context.Background(), requestBody, nil)
+// To initialize your graphClient, see https://learn.microsoft.com/en-us/graph/sdks/create-client?from=snippets&tabs=go
+redirect, err := graphClient.Print().Printers().ByPrinterId("printer-id").Jobs().ByPrintJobId("printJob-id").Redirect().Post(context.Background(), requestBody, nil)
 
 
 ```

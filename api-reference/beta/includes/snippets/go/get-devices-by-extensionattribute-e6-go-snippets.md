@@ -5,16 +5,16 @@ description: "Automatically generated file. DO NOT MODIFY"
 ```go
 
 
+// Code snippets are only available for the latest major version. Current major version is $v0.*
+
+// Dependencies
 import (
 	  "context"
 	  abstractions "github.com/microsoft/kiota-abstractions-go"
 	  msgraphsdk "github.com/microsoftgraph/msgraph-beta-sdk-go"
-	  graphconfig "github.com/microsoftgraph/msgraph-beta-sdk-go/devices"
+	  graphdevices "github.com/microsoftgraph/msgraph-beta-sdk-go/devices"
 	  //other-imports
 )
-
-graphClient := msgraphsdk.NewGraphServiceClientWithCredentials(cred, scopes)
-
 
 headers := abstractions.NewRequestHeaders()
 headers.Add("ConsistencyLevel", "eventual")
@@ -23,16 +23,17 @@ headers.Add("ConsistencyLevel", "eventual")
 requestFilter := "extensionAttributes/extensionAttribute1 eq 'BYOD-Device'"
 requestCount := true
 
-requestParameters := &graphconfig.DevicesRequestBuilderGetQueryParameters{
+requestParameters := &graphdevices.DevicesRequestBuilderGetQueryParameters{
 	Filter: &requestFilter,
 	Count: &requestCount,
 }
-configuration := &graphconfig.DevicesRequestBuilderGetRequestConfiguration{
+configuration := &graphdevices.DevicesRequestBuilderGetRequestConfiguration{
 	Headers: headers,
 	QueryParameters: requestParameters,
 }
 
-result, err := graphClient.Devices().Get(context.Background(), configuration)
+// To initialize your graphClient, see https://learn.microsoft.com/en-us/graph/sdks/create-client?from=snippets&tabs=go
+devices, err := graphClient.Devices().Get(context.Background(), configuration)
 
 
 ```

@@ -5,21 +5,21 @@ description: "Automatically generated file. DO NOT MODIFY"
 ```go
 
 
+// Code snippets are only available for the latest major version. Current major version is $v0.*
+
+// Dependencies
 import (
 	  "context"
 	  msgraphsdk "github.com/microsoftgraph/msgraph-beta-sdk-go"
-	  graphmodels "github.com/microsoftgraph/msgraph-beta-sdk-go/Me/TranslateExchangeIds"
+	  graphusers "github.com/microsoftgraph/msgraph-beta-sdk-go/users"
+	  graphmodels "github.com/microsoftgraph/msgraph-beta-sdk-go/models"
 	  //other-imports
 )
 
-graphClient := msgraphsdk.NewGraphServiceClientWithCredentials(cred, scopes)
-
-
-requestBody := graphmodels.NewTranslateExchangeIdsPostRequestBody()
+requestBody := graphusers.NewItemTranslateExchangeIdsPostRequestBody()
 inputIds := []string {
 	"{rest-formatted-id-1}",
 	"{rest-formatted-id-2}",
-
 }
 requestBody.SetInputIds(inputIds)
 sourceIdType := graphmodels.RESTID_EXCHANGEIDFORMAT 
@@ -27,7 +27,8 @@ requestBody.SetSourceIdType(&sourceIdType)
 targetIdType := graphmodels.RESTIMMUTABLEENTRYID_EXCHANGEIDFORMAT 
 requestBody.SetTargetIdType(&targetIdType) 
 
-result, err := graphClient.Me().TranslateExchangeIds().Post(context.Background(), requestBody, nil)
+// To initialize your graphClient, see https://learn.microsoft.com/en-us/graph/sdks/create-client?from=snippets&tabs=go
+translateExchangeIds, err := graphClient.Me().TranslateExchangeIds().PostAsTranslateExchangeIdsPostResponse(context.Background(), requestBody, nil)
 
 
 ```

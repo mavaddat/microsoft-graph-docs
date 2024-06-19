@@ -5,17 +5,17 @@ description: "Automatically generated file. DO NOT MODIFY"
 ```go
 
 
+// Code snippets are only available for the latest major version. Current major version is $v0.*
+
+// Dependencies
 import (
 	  "context"
 	  msgraphsdk "github.com/microsoftgraph/msgraph-beta-sdk-go"
-	  graphmodels "github.com/microsoftgraph/msgraph-beta-sdk-go/DeviceManagement/VirtualEndpoint/Reports/GetTotalAggregatedRemoteConnectionReports"
+	  graphdevicemanagement "github.com/microsoftgraph/msgraph-beta-sdk-go/devicemanagement"
 	  //other-imports
 )
 
-graphClient := msgraphsdk.NewGraphServiceClientWithCredentials(cred, scopes)
-
-
-requestBody := graphmodels.NewGetTotalAggregatedRemoteConnectionReportsPostRequestBody()
+requestBody := graphdevicemanagement.NewGetTotalAggregatedRemoteConnectionReportsPostRequestBody()
 top := int32(25)
 requestBody.SetTop(&top) 
 skip := int32(0)
@@ -27,11 +27,13 @@ select := []string {
 	"ManagedDeviceName",
 	"UserPrincipalName",
 	"TotalUsageInHour",
-	"DaysSinceLastSignIn",
-
+	"LastActiveTime",
+	"PcType",
+	"CreatedDate",
 }
 requestBody.SetSelect(select)
 
+// To initialize your graphClient, see https://learn.microsoft.com/en-us/graph/sdks/create-client?from=snippets&tabs=go
 graphClient.DeviceManagement().VirtualEndpoint().Reports().GetTotalAggregatedRemoteConnectionReports().Post(context.Background(), requestBody, nil)
 
 

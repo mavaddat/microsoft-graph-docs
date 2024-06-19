@@ -5,15 +5,15 @@ description: "Automatically generated file. DO NOT MODIFY"
 ```go
 
 
+// Code snippets are only available for the latest major version. Current major version is $v1.*
+
+// Dependencies
 import (
 	  "context"
 	  msgraphsdk "github.com/microsoftgraph/msgraph-sdk-go"
 	  graphmodels "github.com/microsoftgraph/msgraph-sdk-go/models"
 	  //other-imports
 )
-
-graphClient := msgraphsdk.NewGraphServiceClientWithCredentials(cred, scopes)
-
 
 requestBody := graphmodels.NewCall()
 direction := graphmodels.OUTGOING_CALLDIRECTION 
@@ -56,16 +56,14 @@ invitationParticipantInfo1.SetIdentity(identity)
 targets := []graphmodels.InvitationParticipantInfoable {
 	invitationParticipantInfo,
 	invitationParticipantInfo1,
-
 }
 requestBody.SetTargets(targets)
 requestedModalities := []graphmodels.Modalityable {
 	modality := graphmodels.AUDIO_MODALITY 
-	requestBody.SetModality(&modality) 
-
+	requestBody.SetModality(&modality)
 }
 requestBody.SetRequestedModalities(requestedModalities)
-mediaConfig := graphmodels.NewMediaConfig()
+mediaConfig := graphmodels.NewAppHostedMediaConfig()
 additionalData := map[string]interface{}{
 	removeFromDefaultAudioGroup := false
 mediaConfig.SetRemoveFromDefaultAudioGroup(&removeFromDefaultAudioGroup) 
@@ -73,7 +71,8 @@ mediaConfig.SetRemoveFromDefaultAudioGroup(&removeFromDefaultAudioGroup)
 mediaConfig.SetAdditionalData(additionalData)
 requestBody.SetMediaConfig(mediaConfig)
 
-result, err := graphClient.Communications().Calls().Post(context.Background(), requestBody, nil)
+// To initialize your graphClient, see https://learn.microsoft.com/en-us/graph/sdks/create-client?from=snippets&tabs=go
+calls, err := graphClient.Communications().Calls().Post(context.Background(), requestBody, nil)
 
 
 ```

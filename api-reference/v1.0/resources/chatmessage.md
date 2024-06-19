@@ -1,10 +1,10 @@
 ---
 title: "chatMessage resource type"
-description: "Represents an individual chat message in a channel or chat entity. The chat message can be a root chat message or part of a thread that is defined by the **replyToId** property in the chat message."
+description: "Represents an individual chat message in a channel or chat entity."
 doc_type: resourcePageType
 ms.localizationpriority: medium
 author: "RamjotSingh"
-ms.prod: "microsoft-teams"
+ms.subservice: "teams"
 ---
 
 # chatMessage resource type
@@ -13,7 +13,7 @@ Namespace: microsoft.graph
 
 Represents an individual chat message within a [channel](channel.md) or [chat](chat.md). The message can be a root message or part of a thread that is defined by the **replyToId** property in the message.
 
-> **Note**: This resource supports subscribing to changes (create, update, and delete) using [change notifications](../resources/webhooks.md). This allows callers to subscribe and get changes in real time. For details, see [Get notifications for messages](/graph/teams-changenotifications-chatMessage).
+> **Note**: This resource supports subscribing to changes (create, update, and delete) using [change notifications](../resources/change-notifications-api-overview.md). This allows callers to subscribe and get changes in real time. For details, see [Get notifications for messages](/graph/teams-changenotifications-chatMessage).
 
 ## Methods
 
@@ -27,14 +27,18 @@ Represents an individual chat message within a [channel](channel.md) or [chat](c
 |[Send message in channel](../api/chatmessage-post.md) | [chatMessage](chatmessage.md)| Create a new root message in a channel.|
 |[Update message in channel](../api/chatmessage-update.md)|None| Update the **policyViolation** property of a chat message.|
 |[Delete message in channel](../api/chatmessage-softdelete.md)|None| Delete the message in a channel.|
-|[Undo the deletion of a message in channel](../api/chatmessage-undoSoftdelete.md)|None| Undelete the message in a channel.|
+|[Undo the deletion of a message in channel](../api/chatmessage-undosoftdelete.md)|None| Undelete the message in a channel.|
+|[Set reaction to a message in channel](../api/chatmessage-setreaction.md)|None| Set reaction to a message in a channel.|
+|[Unset reaction to a message in channel](../api/chatmessage-unsetreaction.md)|None| Unset reaction to a message in a channel.|
 |**Channel message replies**| | |
 |[List replies to message](../api/chatmessage-list-replies.md) | [chatMessage](chatmessage.md) collection| List of all replies to a chat message in channel.|
 |[Get reply message in channel](../api/chatmessage-get.md) | [chatMessage](chatmessage.md) | Get a single reply message in a channel.|
 |[Reply to a message in channel](../api/chatmessage-post-replies.md) | [chatMessage](chatmessage.md)| Reply to an existing chat message in a channel.|
 |[Update reply message](../api/chatmessage-update.md)|[chatMessage](chatmessage.md)| Update the **policyViolation** property of a chat message.|
 |[Delete reply message in channel](../api/chatmessage-softdelete.md)|[chatMessage](chatmessage.md)| Delete the single reply message in a channel.|
-|[Undo deletion of a reply message in channel](../api/chatmessage-undoSoftdelete.md)|[chatMessage](chatmessage.md)| Undelete the single reply message in a channel.
+|[Undo deletion of a reply message in channel](../api/chatmessage-undosoftdelete.md)|[chatMessage](chatmessage.md)| Undelete the single reply message in a channel.
+|[Set reaction to a message in channel](../api/chatmessage-setreaction.md)|None| Set reaction to a message in a channel.|
+|[Unset reaction to a message in channel](../api/chatmessage-unsetreaction.md)|None| Unset reaction to a message in a channel.|
 |**Chat messages**| | |
 |[List messages in chat](../api/chat-list-messages.md)  | [chatMessage](../resources/chatmessage.md) | List chat messages in a chat. |
 |[Get message in chat](../api/chatmessage-get.md)  | [chatMessage](../resources/chatmessage.md) | Get a single chat message in a chat. |
@@ -44,7 +48,9 @@ Represents an individual chat message within a [channel](channel.md) or [chat](c
 |[Send message in chat](../api/chat-post-messages.md) | [chatMessage](chatmessage.md)| Send a chat message in an existing 1:1 or group chat conversation.|
 |[Update message in chat](../api/chatmessage-update.md)|[chatMessage](chatmessage.md)| Update the **policyViolation** property of a chat message.|
 |[Delete message in chat](../api/chatmessage-softdelete.md)|[chatMessage](chatmessage.md)| Delete the message of a chat.|
-|[Undo the deletion of a message in chat](../api/chatmessage-undoSoftdelete.md)|[chatMessage](chatmessage.md)| Undelete the message in a chat.|
+|[Undo the deletion of a message in chat](../api/chatmessage-undosoftdelete.md)|[chatMessage](chatmessage.md)| Undelete the message in a chat.|
+|[Set reaction to a message in channel](../api/chatmessage-setreaction.md)|None| Set reaction to a message in a channel.|
+|[Unset reaction to a message in channel](../api/chatmessage-unsetreaction.md)|None| Unset reaction to a message in a channel.|
 |**Hosted content**| | |
 |[List all hosted content](../api/chatmessage-list-hostedcontents.md) | [chatMessageHostedContent](../resources/chatmessagehostedcontent.md) collection| Get all hosted contents associated with a message.|
 |[Get hosted content](../api/chatmessagehostedcontent-get.md) | [chatMessageHostedContent](../resources/chatmessagehostedcontent.md) | Get hosted content (and its bytes) for a message.|
@@ -82,8 +88,8 @@ Represents an individual chat message within a [channel](channel.md) or [chat](c
 
 | Relationship   | Type    | Description |
 |:---------------|:--------|:----------|
-|hostedContents|[chatMessageHostedContent](chatmessagehostedcontent.md)| Content in a message hosted by Microsoft Teams - for example, images or code snippets. |
-|replies|[chatMessage](chatmessage.md)| Replies for a specified message. Supports `$expand` for channel messages. |
+|hostedContents|[chatMessageHostedContent](chatmessagehostedcontent.md) collection| Content in a message hosted by Microsoft Teams - for example, images or code snippets. |
+|replies|[chatMessage](chatmessage.md) collection| Replies for a specified message. Supports `$expand` for channel messages. |
 
 ## JSON representation
 
@@ -105,6 +111,7 @@ The following is a JSON representation of the resource.
     "channelIdentity"
   ],
   "baseType": "microsoft.graph.entity",
+  "keyProperty": "id",
   "@odata.type": "microsoft.graph.chatMessage"
 }-->
 
@@ -114,32 +121,26 @@ The following is a JSON representation of the resource.
   "attachments": [{"@odata.type": "microsoft.graph.chatMessageAttachment"}],
   "body": {"@odata.type": "microsoft.graph.itemBody"},
   "channelIdentity": {"@odata.type": "microsoft.graph.channelIdentity"},
-  "chatId": "string",
-  "createdDateTime": "string (timestamp)",
-  "deletedDateTime": "string (timestamp)",
-  "etag": "string",
-  "eventDetail": {
-    "@odata.type": "microsoft.graph.eventMessageDetail"
-  },
+  "chatId": "String",
+  "createdDateTime": "String (timestamp)",
+  "deletedDateTime": "String (timestamp)",
+  "etag": "String",
+  "eventDetail": {"@odata.type": "microsoft.graph.eventMessageDetail"},
   "from": {"@odata.type": "microsoft.graph.chatMessageFromIdentitySet"},
-  "id": "string (identifier)",
-  "importance": "string",
-  "lastEditedDateTime": "string (timestamp)",
-  "lastModifiedDateTime": "string (timestamp)",
-  "locale": "string",
+  "id": "String (identifier)",
+  "importance": "String",
+  "lastEditedDateTime": "String (timestamp)",
+  "lastModifiedDateTime": "String (timestamp)",
+  "locale": "String",
   "mentions": [{"@odata.type": "microsoft.graph.chatMessageMention"}],
-  "messageType": "string",
+  "messageHistory": [{"@odata.type": "microsoft.graph.chatMessageHistoryItem"}],
+  "messageType": "String",
   "policyViolation": {"@odata.type": "microsoft.graph.chatMessagePolicyViolation"},
   "reactions": [{"@odata.type": "microsoft.graph.chatMessageReaction"}],
-  "messageHistory": [
-    {
-      "@odata.type": "microsoft.graph.chatMessageHistoryItem"
-    }
-  ],
-  "replyToId": "string (identifier)",
-  "subject": "string",
-  "summary": "string",
-  "webUrl": "string"
+  "replyToId": "String (identifier)",
+  "subject": "String",
+  "summary": "String",
+  "webUrl": "String"
 }
 ```
 

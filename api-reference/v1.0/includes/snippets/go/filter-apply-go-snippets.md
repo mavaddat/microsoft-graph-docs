@@ -5,17 +5,18 @@ description: "Automatically generated file. DO NOT MODIFY"
 ```go
 
 
+// Code snippets are only available for the latest major version. Current major version is $v1.*
+
+// Dependencies
 import (
 	  "context"
 	  msgraphsdk "github.com/microsoftgraph/msgraph-sdk-go"
-	  graphmodels "github.com/microsoftgraph/msgraph-sdk-go/Drives/Item/Items/Item/Workbook/Tables/Item/Columns/Item/Filter/Apply"
+	  graphdrives "github.com/microsoftgraph/msgraph-sdk-go/drives"
+	  graphmodels "github.com/microsoftgraph/msgraph-sdk-go/models"
 	  //other-imports
 )
 
-graphClient := msgraphsdk.NewGraphServiceClientWithCredentials(cred, scopes)
-
-
-requestBody := graphmodels.NewApplyPostRequestBody()
+requestBody := graphdrives.NewApplyPostRequestBody()
 criteria := graphmodels.NewWorkbookFilterCriteria()
 criterion1 := "criterion1-value"
 criteria.SetCriterion1(&criterion1) 
@@ -23,7 +24,7 @@ criterion2 := "criterion2-value"
 criteria.SetCriterion2(&criterion2) 
 color := "color-value"
 criteria.SetColor(&color) 
-operator := graphmodels.Newoperator()
+operator := graph.Newoperator()
 criteria.SetOperator(operator)
 icon := graphmodels.NewWorkbookIcon()
 set := "set-value"
@@ -33,13 +34,14 @@ icon.SetIndex(&index)
 criteria.SetIcon(icon)
 dynamicCriteria := "dynamicCriteria-value"
 criteria.SetDynamicCriteria(&dynamicCriteria) 
-values := graphmodels.NewJson()
+values := graph.Newvalues()
 criteria.SetValues(values)
 filterOn := "filterOn-value"
 criteria.SetFilterOn(&filterOn) 
 requestBody.SetCriteria(criteria)
 
-graphClient.Drives().ByDriveId("drive-id").Items().ByItemId("driveItem-id").Workbook().Tables().ByTableId("workbookTable-id").Columns().ByColumnId("workbookTableColumn-id").Filter().Apply().Post(context.Background(), requestBody, nil)
+// To initialize your graphClient, see https://learn.microsoft.com/en-us/graph/sdks/create-client?from=snippets&tabs=go
+graphClient.Drives().ByDriveId("drive-id").Items().ByDriveItemId("driveItem-id").Workbook().Tables().ByWorkbookTableId("workbookTable-id").Columns().ByWorkbookTableColumnId("workbookTableColumn-id").Filter().Apply().Post(context.Background(), requestBody, nil)
 
 
 ```
